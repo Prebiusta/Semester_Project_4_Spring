@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class MeasurementController {
@@ -20,7 +22,8 @@ public class MeasurementController {
 
     @RequestMapping(value = "/measurement", method = RequestMethod.GET)
     public ResponseEntity<?> getMeasurement() {
-        return ResponseEntity.status(HttpStatus.OK).body(measurementService.getAllMeasurements());
+        List<Measurement> measurementList = measurementService.getAllMeasurements();
+        return ResponseEntity.status(HttpStatus.OK).body(measurementList);
     }
 
     @RequestMapping(value = "/measurement", method = RequestMethod.POST)

@@ -9,8 +9,11 @@ import java.util.List;
 
 @Service
 public class MeasurementService {
-    @Autowired
-    MeasurementDao measurementDao;
+    private final MeasurementDao measurementDao;
+
+    public MeasurementService(MeasurementDao measurementDao) {
+        this.measurementDao = measurementDao;
+    }
 
     public List<Measurement> getAllMeasurements(){
         return this.measurementDao.findAll();
