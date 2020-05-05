@@ -28,5 +28,5 @@ jobs:
       with:
         app-name: 'librarydatabaseapi'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d4444a29d0384c84ae80b42dcd51c6fa }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_51bbbfd76c394eac9a7ed690e0f8e456 }}
         package: '${{ github.workspace }}/target/*.jar'
