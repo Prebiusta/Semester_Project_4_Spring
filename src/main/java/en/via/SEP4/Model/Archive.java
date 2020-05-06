@@ -1,5 +1,9 @@
 package en.via.SEP4.Model;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -7,11 +11,15 @@ import javax.validation.constraints.NotNull;
 @Table(name = "archive", schema = "archive")
 public class Archive  {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @NotNull
-    public String name;
+    private String name;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "optimalValues_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private OptimalValues optimalValues;
 
     public long getId() {
         return id;
