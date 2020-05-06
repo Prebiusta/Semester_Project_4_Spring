@@ -2,10 +2,12 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.Model.CarbonDioxide;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.Date;
 
+@Service
 public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     @Override
     public CarbonDioxide addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxide carbonDioxideMeasurement) {

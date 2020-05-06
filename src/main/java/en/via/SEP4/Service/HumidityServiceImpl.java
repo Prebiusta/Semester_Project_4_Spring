@@ -2,10 +2,13 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.Model.Humidity;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
+
 import java.util.Date;
 
+@Service
 public class HumidityServiceImpl implements HumidityService {
     @Override
     public Humidity addHumidityMeasurementToArchive(Long archiveId, Humidity humidityMeasurement) {

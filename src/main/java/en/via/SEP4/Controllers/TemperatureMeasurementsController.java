@@ -11,11 +11,11 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
-public class MeasurementController {
+public class TemperatureMeasurementController {
     private final TemperatureService temperatureService;
     private final ArchiveService archiveService;
 
-    public MeasurementController(TemperatureService temperatureService, ArchiveService archiveService) {
+    public TemperatureMeasurementController(TemperatureService temperatureService, ArchiveService archiveService) {
         this.temperatureService = temperatureService;
         this.archiveService = archiveService;
     }
