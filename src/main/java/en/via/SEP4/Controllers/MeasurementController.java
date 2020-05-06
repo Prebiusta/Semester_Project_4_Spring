@@ -1,33 +1,34 @@
 package en.via.SEP4.Controllers;
 
-import en.via.SEP4.Model.Measurement;
-import en.via.SEP4.Service.MeasurementService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import en.via.SEP4.Model.Temperature;
+import en.via.SEP4.Service.ArchiveService;
+import en.via.SEP4.Service.TemperatureService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
 public class MeasurementController {
-    private final MeasurementService measurementService;
+    private final TemperatureService temperatureService;
+    private final ArchiveService archiveService;
 
-    public MeasurementController(MeasurementService measurementService) {
-        this.measurementService = measurementService;
+    public MeasurementController(TemperatureService temperatureService, ArchiveService archiveService) {
+        this.temperatureService = temperatureService;
+        this.archiveService = archiveService;
     }
 
-    @RequestMapping(value = "/measurement", method = RequestMethod.GET)
-    public ResponseEntity<?> getMeasurement() {
-        List<Measurement> measurementList = measurementService.getAllMeasurements();
-        return ResponseEntity.status(HttpStatus.OK).body(measurementList);
+    @GetMapping(value = "archives/{archiveId}/temperatures")
+    public Page<Temperature> getAllTemperaturesByArchiveId(@PathVariable (name = "archiveId") Long archiveId,
+                                                           Pageable pageable) {
+        return temperatureService.getAllTemperaturesByArchiveId(archiveId, pageable);
     }
 
-    @RequestMapping(value = "/measurement", method = RequestMethod.POST)
-    public ResponseEntity<?> postMeasurement(@RequestBody Measurement measurement) {
-        return ResponseEntity.status(HttpStatus.OK).body(measurementService.addMeasurement(measurement));
+    @PostMapping(value = "archives/{archiveId}/temperatures")
+    public Temperature createTemperatureForArchive(@PathVariable(value = "archiveId") Long archiveId,
+                                             @Valid @RequestBody Temperature temperature) {
+        return temperatureService.addTemperature(archiveId, temperature);
     }
 }
