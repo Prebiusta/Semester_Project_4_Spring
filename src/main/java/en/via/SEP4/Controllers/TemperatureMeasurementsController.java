@@ -8,27 +8,41 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api")
-public class TemperatureMeasurementController {
+public class TemperatureMeasurementsController {
     private final TemperatureService temperatureService;
-    private final ArchiveService archiveService;
 
-    public TemperatureMeasurementController(TemperatureService temperatureService, ArchiveService archiveService) {
+    public TemperatureMeasurementsController(TemperatureService temperatureService, ArchiveService archiveService) {
         this.temperatureService = temperatureService;
-        this.archiveService = archiveService;
     }
 
     @GetMapping(value = "archives/{archiveId}/temperatures")
-    public Page<Temperature> getAllTemperaturesByArchiveId(@PathVariable (name = "archiveId") Long archiveId,
-                                                           Pageable pageable) {
-        return temperatureService.getAllTemperaturesByArchiveId(archiveId, pageable);
+    public Page<Temperature> getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId,
+                                                        Pageable pageable) {
+        return temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId, pageable);
     }
 
     @PostMapping(value = "archives/{archiveId}/temperatures")
     public Temperature createTemperatureForArchive(@PathVariable(value = "archiveId") Long archiveId,
-                                             @Valid @RequestBody Temperature temperature) {
-        return temperatureService.addTemperature(archiveId, temperature);
+                                                   @Valid @RequestBody Temperature temperature) {
+        return temperatureService.addTemperatureMeasurementToArchive(archiveId, temperature);
     }
+
+    @GetMapping(value = "archives/{archiveId}/temperatures")
+    public Page<Temperature> getTemperaturesByDate(@PathVariable(name = "archiveId") Long archiveId, Date date,
+                                                           Pageable pageable) {
+        return temperatureService.getTemperatureMeasurementsByDate(archiveId,date, pageable);
+    }
+
+
+    @GetMapping(value = "archives/{archiveId}/temperatures")
+    public Page<Temperature> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId, Date startDate, Date endDate,
+                                                           Pageable pageable) {
+        return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
+    }
+
+
 }
