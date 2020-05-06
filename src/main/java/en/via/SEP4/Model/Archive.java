@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "archive", schema = "archive")
-public class Archive extends AuditModel {
+public class Archive  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
