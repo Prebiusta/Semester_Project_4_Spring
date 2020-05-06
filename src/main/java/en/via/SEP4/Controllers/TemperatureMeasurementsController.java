@@ -31,16 +31,15 @@ public class TemperatureMeasurementsController {
         return temperatureService.addTemperatureMeasurementToArchive(archiveId, temperature);
     }
 
-    @GetMapping(value = "archives/{archiveId}/temperatures")
-    public Page<Temperature> getTemperaturesByDate(@PathVariable(name = "archiveId") Long archiveId, Date date,
-                                                           Pageable pageable) {
-        return temperatureService.getTemperatureMeasurementsByDate(archiveId,date, pageable);
+    @GetMapping(value = "archives/{archiveId}/temperatures/date")
+    public Page<Temperature> getTemperaturesByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") Date date,
+                                                   Pageable pageable) {
+        return temperatureService.getTemperatureMeasurementsByDate(archiveId, date, pageable);
     }
 
 
-    @GetMapping(value = "archives/{archiveId}/temperatures")
-    public Page<Temperature> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId, Date startDate, Date endDate,
-                                                           Pageable pageable) {
+    @GetMapping(value = "archives/{archiveId}/temperatures/dateInterval")
+    public Page<Temperature> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") Date startDate, @Valid @RequestParam(name = "endDate") Date endDate, Pageable pageable) {
         return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
     }
 
