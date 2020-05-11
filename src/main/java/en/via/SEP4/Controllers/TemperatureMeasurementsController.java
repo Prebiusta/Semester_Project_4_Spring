@@ -19,26 +19,26 @@ public class TemperatureMeasurementsController {
         this.temperatureService = temperatureService;
     }
 
-    @GetMapping(value = "archives/{archiveId}/temperature")
+    @GetMapping(value = "archive/{archiveId}/temperature")
     public Page<Temperature> getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId,
                                                         Pageable pageable) {
         return temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId, pageable);
     }
 
-    @PostMapping(value = "archives/{archiveId}/temperature")
+    @PostMapping(value = "archive/{archiveId}/temperature")
     public Temperature createTemperatureForArchive(@PathVariable(value = "archiveId") Long archiveId,
                                                    @Valid @RequestBody Temperature temperature) {
         return temperatureService.addTemperatureMeasurementToArchive(archiveId, temperature);
     }
 
-    @GetMapping(value = "archives/{archiveId}/temperature/date")
+    @GetMapping(value = "archive/{archiveId}/temperature/date")
     public Page<Temperature> getTemperaturesByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") Date date,
                                                    Pageable pageable) {
         return temperatureService.getTemperatureMeasurementsByDate(archiveId, date, pageable);
     }
 
 
-    @GetMapping(value = "archives/{archiveId}/temperature/dateInterval")
+    @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
     public Page<Temperature> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") Date startDate, @Valid @RequestParam(name = "endDate") Date endDate, Pageable pageable) {
         return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
     }

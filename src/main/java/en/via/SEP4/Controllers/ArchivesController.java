@@ -18,12 +18,12 @@ public class ArchivesController {
         this.archiveService = archiveService;
     }
 
-    @GetMapping(value = "/archives")
+    @GetMapping(value = "/archive")
     public List<Archive> getAllArchives() {
         return archiveService.getAllArchives();
     }
 
-    @GetMapping(value = "archives/{archiveId}")
+    @GetMapping(value = "archive/{archiveId}")
     public Archive getArchiveByArchiveId(@PathVariable(name = "archiveId") Long archiveId
     ) {
         return archiveService.getArchiveByArchiveId(archiveId);

@@ -18,24 +18,24 @@ public class CarbonDioxideMeasurementsController {
         this.carbonDioxideService = carbonDioxideService;
     }
 
-    @GetMapping(value = "archives/{archiveId}/carbondioxide")
+    @GetMapping(value = "archive/{archiveId}/carbondioxide")
     public Page<CarbonDioxide> getAllCarbonDioxideMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId, Pageable pageable) {
         return carbonDioxideService.getAllCarbonDioxideMeasurementsFromArchiveId(archiveId, pageable);
     }
 
-    @PostMapping(value = "archives/{archiveId}/carbondioxide")
+    @PostMapping(value = "archive/{archiveId}/carbondioxide")
     public CarbonDioxide createCarbonDioxideMeasurementForArchive(@PathVariable(name = "archiveId") Long archiveId,
                                                                   @Valid @RequestBody CarbonDioxide carbonDioxide) {
         return carbonDioxideService.addCarbonDioxideMeasurementToArchive(archiveId, carbonDioxide);
     }
 
-    @GetMapping(value = "archives/{archiveId}/carbondioxide/date")
+    @GetMapping(value = "archive/{archiveId}/carbondioxide/date")
     public Page<CarbonDioxide> getCarbonDioxideMeasurementsByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") Date date,
                                                                   Pageable pageable) {
         return carbonDioxideService.getCarbonDioxideMeasurementsByDate(archiveId, date, pageable);
     }
 
-    @GetMapping(value = "archives/{archiveId}/carbondioxide/dateInterval")
+    @GetMapping(value = "archive/{archiveId}/carbondioxide/dateInterval")
     public Page<CarbonDioxide> getCarbonDioxideMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") Date startDate, @Valid @RequestParam(name = "endDate") Date endDate,
                                                                           Pageable pageable) {
         return carbonDioxideService.getCarbonDioxideMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
