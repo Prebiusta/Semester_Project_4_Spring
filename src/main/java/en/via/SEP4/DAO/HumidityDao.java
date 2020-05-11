@@ -9,6 +9,6 @@ import java.util.Date;
 
 public interface HumidityDao extends JpaRepository<Humidity,Long> {
     Page<Humidity> findByArchiveId(Long archiveId, Pageable pageable);
-    Page<Humidity> findByArchiveIdAndCreatedAt(Long archiveId, Date date);
-    Page<Humidity> findByArchiveIdAndCreatedAtBetween(Long archiveId, Date date1, Date date2);
+    Page<Humidity> findByArchiveIdAndCreatedAt(Long archiveId, Date date, Pageable pageable);
+    Page<Humidity> findByArchiveIdAndCreatedAtBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
 }

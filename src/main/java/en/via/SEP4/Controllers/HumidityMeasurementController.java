@@ -18,25 +18,25 @@ public class HumidityMeasurementController {
         this.humidityService = humidityService;
     }
 
-    @GetMapping(value = "archives/{archiveId}/humidityMeasurements")
+    @GetMapping(value = "archives/{archiveId}/humidity")
     public Page<Humidity> getHumidityMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId,
                                                              Pageable pageable) {
         return humidityService.getAllHumidityMeasurementsFromArchiveId(archiveId, pageable);
     }
 
-    @PostMapping(value = "archives/{archiveId}/humidityMeasurements")
+    @PostMapping(value = "archives/{archiveId}/humidity")
     public Humidity createHumidityForArchive(@PathVariable(value = "archiveId") Long archiveId,
                                              @Valid @RequestBody Humidity humidity) {
         return humidityService.addHumidityMeasurementToArchive(archiveId, humidity);
     }
 
-    @GetMapping(value = "archives/{archiveId}/humidityMeasurements/date")
+    @GetMapping(value = "archives/{archiveId}/humidity/date")
     public Page<Humidity> getHumidityMeasurementsByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") Date date,
                                                         Pageable pageable) {
         return humidityService.getHumidityMeasurementsByDate(archiveId, date, pageable);
     }
 
-    @GetMapping(value = "archives/{archiveId}/humidityMeasurements/dateInterval")
+    @GetMapping(value = "archives/{archiveId}/humidity/dateInterval")
     public Page<Humidity> getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") Date startDate, @Valid @RequestParam(name = "endDate") Date endDate,
                                                                 Pageable pageable) {
         return humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);

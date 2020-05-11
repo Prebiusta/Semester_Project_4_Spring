@@ -14,10 +14,10 @@ import java.util.Date;
 @Service
 public class TemperatureServiceImpl implements TemperatureService {
     @Autowired
-    TemperatureDao temperatureDao;
+    private TemperatureDao temperatureDao;
 
     @Autowired
-    ArchiveDao archiveDao;
+    private ArchiveDao archiveDao;
 
     @Override
     public Temperature addTemperatureMeasurementToArchive(Long archiveId, Temperature temperatureMeasurement) {
@@ -34,11 +34,11 @@ public class TemperatureServiceImpl implements TemperatureService {
 
     @Override
     public Page<Temperature> getTemperatureMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return null;
+        return temperatureDao.findByArchiveIdAndCreatedAt(archiveId, date, pageable);
     }
 
     @Override
     public Page<Temperature> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return null;
+        return temperatureDao.findByArchiveIdAndCreatedAtBetween(archiveId, startDate, endDate, pageable);
     }
 }

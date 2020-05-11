@@ -4,5 +4,5 @@ import en.via.SEP4.Model.Archive;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ArchiveDao extends JpaRepository<Archive, Long> {
-    Archive findByArchiveId(Long archiveId);
+    Archive findArchiveById(Long archiveId);
 }

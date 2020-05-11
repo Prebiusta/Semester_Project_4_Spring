@@ -19,6 +19,6 @@ public class ArchiveServiceImpl implements ArchiveService {
 
     @Override
     public Archive getArchiveByArchiveId(Long archiveId) {
-        return archiveDao.findByArchiveId(archiveId);
+        return archiveDao.findArchiveById(archiveId);
     }
 }

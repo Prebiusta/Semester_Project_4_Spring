@@ -9,6 +9,6 @@ import java.util.Date;
 
 public interface CarbonDioxideDao extends JpaRepository<CarbonDioxide,Long> {
     Page<CarbonDioxide> findByArchiveId(Long archiveId, Pageable pageable);
-    Page<CarbonDioxide> findByArchiveIdAndCreatedAt(Long archiveId, Date date);
-    Page<CarbonDioxide> findByArchiveIdAndCreatedAtBetween(Long archiveId, Date date1, Date date2);
+    Page<CarbonDioxide> findByArchiveIdAndCreatedAt(Long archiveId, Date date, Pageable pageable);
+    Page<CarbonDioxide> findByArchiveIdAndCreatedAtBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
 }
