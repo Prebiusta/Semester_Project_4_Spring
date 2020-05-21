@@ -1,4 +1,4 @@
-package en.via.SEP4.Model;
+package en.via.SEP4.Model.DBModel;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +20,10 @@ public class OptimalValuesEntity {
 
     @NotNull
     private float optimalTemperature;
+
     @NotNull
     private float optimalHumidity;
+
     @NotNull
     private float optimalCarbonDioxide;
 }

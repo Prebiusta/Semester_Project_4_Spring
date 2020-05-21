@@ -1,5 +1,6 @@
-package en.via.SEP4.WareHouseModel;
+package en.via.SEP4.Model.DWModel;
 
+import jdk.jfr.Name;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,24 +13,25 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "D_Archive", schema = "archive_warehouse")
-public class DimensionArchiveEntity {
+@Table (name = "D_Sensor",schema = "archive_warehouse")
+public class DimensionSensorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "dim_archive_id")
-    private Long dimArchiveId;
+    @Column(name = "dim_sensor_id")
+    private Long dimSensorId;
+
+    @Column(name = "sensor_id")
+    @NotNull
+    private Long sensorId;
 
     @NotNull
-    @Column(name = "archive_id")
-    private Long archiveId;
-
-    @NotNull
-    private String name;
+    private String type;
 
     @NotNull
     private Date validFrom;
 
     @NotNull
     private Date validTo;
+
 }

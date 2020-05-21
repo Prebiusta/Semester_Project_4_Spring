@@ -2,7 +2,7 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.DAO.ArchiveDao;
 import en.via.SEP4.DAO.CarbonDioxideDao;
-import en.via.SEP4.Model.CarbonDioxideEntity;
+import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,11 +37,11 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
 
     @Override
     public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return carbonDioxideDao.findByArchiveEntityIdAndCreatedAt(archiveId, date, pageable);
+        return carbonDioxideDao.findByArchiveEntityIdAndDate(archiveId, date, pageable);
     }
 
     @Override
     public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return carbonDioxideDao.findByArchiveEntityIdAndCreatedAtBetween(archiveId, startDate, endDate, pageable);
+        return carbonDioxideDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate, pageable);
     }
 }

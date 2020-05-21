@@ -1,8 +1,13 @@
-package en.via.SEP4.Model;
+package en.via.SEP4.Model.DBModel;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "sensor",schema = "archive")
 public class SensorEntity {
@@ -16,24 +21,10 @@ public class SensorEntity {
 
     @Transient
     public static String SENSOR_TYPE_TEMPERATURE = "Temperature";
+
     @Transient
     public static String SENSOR_TYPE_HUMIDITY = "Humidity";
+
     @Transient
-    public static String SENSOR_TYPE_CARBONDIOXIDE = "CarbonDioxide";
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
+    public static String SENSOR_TYPE_CARBON_DIOXIDE = "CarbonDioxide";
 }

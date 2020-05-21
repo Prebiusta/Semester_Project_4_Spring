@@ -1,4 +1,4 @@
-package en.via.SEP4.Model;
+package en.via.SEP4.Model.DBModel;
 
 
 import javax.persistence.*;

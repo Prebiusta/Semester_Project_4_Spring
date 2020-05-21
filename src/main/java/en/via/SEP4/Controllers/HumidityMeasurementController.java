@@ -1,6 +1,6 @@
 package en.via.SEP4.Controllers;
 
-import en.via.SEP4.Model.HumidityEntity;
+import en.via.SEP4.Model.DBModel.HumidityEntity;
 import en.via.SEP4.Service.HumidityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

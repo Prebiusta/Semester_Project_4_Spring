@@ -1,6 +1,6 @@
 package en.via.SEP4.Controllers;
 
-import en.via.SEP4.Model.CarbonDioxideEntity;
+import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Service.CarbonDioxideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

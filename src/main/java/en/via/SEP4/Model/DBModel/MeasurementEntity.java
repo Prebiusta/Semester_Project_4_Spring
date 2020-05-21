@@ -1,4 +1,4 @@
-package en.via.SEP4.Model;
+package en.via.SEP4.Model.DBModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -16,13 +16,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(
-        value = {"createdAt", "updatedAt"},
-        allowGetters = true
-)
 public abstract class MeasurementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,19 +25,16 @@ public abstract class MeasurementEntity {
     @NotNull
     private float value;
 
+    @NotNull
+    private Date date;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "archive_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private ArchiveEntity archiveEntity;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @CreatedDate
-    private Date createdAt;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
-    @LastModifiedDate
-    private Date updatedAt;
+    public MeasurementEntity() {
+        this.date = new Date();
+    }
 }

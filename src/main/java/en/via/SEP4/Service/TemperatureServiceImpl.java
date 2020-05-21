@@ -2,7 +2,7 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.DAO.ArchiveDao;
 import en.via.SEP4.DAO.TemperatureDao;
-import en.via.SEP4.Model.TemperatureEntity;
+import en.via.SEP4.Model.DBModel.TemperatureEntity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,11 +37,11 @@ public class TemperatureServiceImpl implements TemperatureService {
 
     @Override
     public Page<TemperatureEntity> getTemperatureMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return temperatureDao.findByArchiveEntityIdAndCreatedAt(archiveId, date, pageable);
+        return temperatureDao.findByArchiveEntityIdAndDate(archiveId, date, pageable);
     }
 
     @Override
     public Page<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return temperatureDao.findByArchiveEntityIdAndCreatedAtBetween(archiveId, startDate, endDate, pageable);
+        return temperatureDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate, pageable);
     }
 }

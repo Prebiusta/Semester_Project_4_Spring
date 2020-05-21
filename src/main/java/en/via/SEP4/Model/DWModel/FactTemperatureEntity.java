@@ -1,4 +1,4 @@
-package en.via.SEP4.WareHouseModel;
+package en.via.SEP4.Model.DWModel;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.Model.CarbonDioxideEntity;
+import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

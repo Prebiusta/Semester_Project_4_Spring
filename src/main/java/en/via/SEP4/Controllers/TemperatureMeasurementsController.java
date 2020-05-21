@@ -1,6 +1,6 @@
 package en.via.SEP4.Controllers;
 
-import en.via.SEP4.Model.TemperatureEntity;
+import en.via.SEP4.Model.DBModel.TemperatureEntity;
 import en.via.SEP4.Service.ArchiveService;
 import en.via.SEP4.Service.TemperatureService;
 import org.springframework.beans.factory.annotation.Autowired;

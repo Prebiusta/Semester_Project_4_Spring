@@ -2,7 +2,7 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.DAO.ArchiveDao;
 import en.via.SEP4.DAO.HumidityDao;
-import en.via.SEP4.Model.HumidityEntity;
+import en.via.SEP4.Model.DBModel.HumidityEntity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,11 +38,11 @@ public class HumidityServiceImpl implements HumidityService {
 
     @Override
     public Page<HumidityEntity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return humidityDao.findByArchiveEntityIdAndCreatedAt(archiveId, date, pageable);
+        return humidityDao.findByArchiveEntityIdAndDate(archiveId, date, pageable);
     }
 
     @Override
     public Page<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return humidityDao.findByArchiveEntityIdAndCreatedAtBetween(archiveId, startDate, endDate, pageable);
+        return humidityDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate, pageable);
     }
 }
