@@ -24,11 +24,11 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     }
 
     @Override
-    public LatestValues getTheLatestMeasurementValues() {
-        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstByOrderByIdDesc();
-        HumidityEntity latestHumidity = humidityDao.findFirstByOrderByIdDesc();
-        TemperatureEntity latestTemperature = temperatureDao.findFirstByOrderByIdDesc();
+    public LatestValues getTheLatestMeasurementValues(Long archiveId) {
+        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId);
+        HumidityEntity latestHumidity = humidityDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId);
+        TemperatureEntity latestTemperature = temperatureDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId);
 
-        return new LatestValues(latestTemperature, latestCarbonDioxide, latestHumidity);
+        return new LatestValues(archiveId, latestTemperature, latestCarbonDioxide, latestHumidity);
     }
 }

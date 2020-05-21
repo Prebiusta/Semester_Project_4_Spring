@@ -13,11 +13,11 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/api")
-public class HumidityMeasurementController {
+public class HumidityMeasurementsController {
     private final HumidityService humidityService;
 
     @Autowired
-    public HumidityMeasurementController(HumidityService humidityService) {
+    public HumidityMeasurementsController(HumidityService humidityService) {
         this.humidityService = humidityService;
     }
 

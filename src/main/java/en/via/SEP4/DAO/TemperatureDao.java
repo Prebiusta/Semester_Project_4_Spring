@@ -12,5 +12,5 @@ public interface TemperatureDao extends JpaRepository<TemperatureEntity, Long> {
     Page<TemperatureEntity> findByArchiveEntityId(Long archiveId, Pageable pageable);
     Page<TemperatureEntity> findByArchiveEntityIdAndDate(Long archiveId, Date date, Pageable pageable);
     Page<TemperatureEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
-    TemperatureEntity findFirstByOrderByIdDesc();
+    TemperatureEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
 }

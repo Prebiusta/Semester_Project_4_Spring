@@ -12,6 +12,6 @@ public interface HumidityDao extends JpaRepository<HumidityEntity,Long> {
     Page<HumidityEntity> findByArchiveEntityId(Long archiveId, Pageable pageable);
     Page<HumidityEntity> findByArchiveEntityIdAndDate(Long archiveId, Date date, Pageable pageable);
     Page<HumidityEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
-    HumidityEntity findFirstByOrderByIdDesc();
+    HumidityEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
 
 }

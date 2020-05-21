@@ -3,6 +3,8 @@ package en.via.SEP4.Controllers;
 import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Service.CarbonDioxideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
