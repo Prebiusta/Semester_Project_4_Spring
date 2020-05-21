@@ -1,8 +1,8 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
-import en.via.SEP4.DAO.CarbonDioxideDao;
-import en.via.SEP4.Model.CarbonDioxide;
+import en.via.SEP4.Repository.ArchiveDao;
+import en.via.SEP4.Repository.CarbonDioxideDao;
+import en.via.SEP4.Model.CarbonDioxideEntity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,32 +13,35 @@ import java.util.Date;
 
 @Service
 public class CarbonDioxideServiceImpl implements CarbonDioxideService {
-    @Autowired
-    private CarbonDioxideDao carbonDioxideDao;
+    private final CarbonDioxideDao carbonDioxideDao;
+    private final ArchiveDao archiveDao;
 
     @Autowired
-    private ArchiveDao archiveDao;
+    public CarbonDioxideServiceImpl(CarbonDioxideDao carbonDioxideDao, ArchiveDao archiveDao) {
+        this.carbonDioxideDao = carbonDioxideDao;
+        this.archiveDao = archiveDao;
+    }
 
     @Override
-    public CarbonDioxide addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxide carbonDioxideMeasurement) {
+    public CarbonDioxideEntity addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxideEntity carbonDioxideMeasurement) {
         return archiveDao.findById(archiveId).map(archive -> {
-            carbonDioxideMeasurement.setArchive(archive);
+            carbonDioxideMeasurement.setArchiveEntity(archive);
             return carbonDioxideDao.save(carbonDioxideMeasurement);
         }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override
-    public Page<CarbonDioxide> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
+    public Page<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
         return carbonDioxideDao.findByArchiveId(archiveId, pageable);
     }
 
     @Override
-    public Page<CarbonDioxide> getCarbonDioxideMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
+    public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
         return carbonDioxideDao.findByArchiveIdAndCreatedAt(archiveId, date, pageable);
     }
 
     @Override
-    public Page<CarbonDioxide> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
+    public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
         return carbonDioxideDao.findByArchiveIdAndCreatedAtBetween(archiveId, startDate, endDate, pageable);
     }
 }

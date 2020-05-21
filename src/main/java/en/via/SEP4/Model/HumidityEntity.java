@@ -5,5 +5,5 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "humidity", schema = "archive")
-public class Humidity extends Measurement {
+public class HumidityEntity extends MeasurementEntity {
 }

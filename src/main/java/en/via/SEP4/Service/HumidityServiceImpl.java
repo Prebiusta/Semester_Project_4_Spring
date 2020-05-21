@@ -1,8 +1,8 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
-import en.via.SEP4.DAO.HumidityDao;
-import en.via.SEP4.Model.Humidity;
+import en.via.SEP4.Repository.ArchiveDao;
+import en.via.SEP4.Repository.HumidityDao;
+import en.via.SEP4.Model.HumidityEntity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,32 +14,35 @@ import java.util.Date;
 
 @Service
 public class HumidityServiceImpl implements HumidityService {
-    @Autowired
-    private HumidityDao humidityDao;
+    private final HumidityDao humidityDao;
+    private final ArchiveDao archiveDao;
 
     @Autowired
-    private ArchiveDao archiveDao;
+    public HumidityServiceImpl(HumidityDao humidityDao, ArchiveDao archiveDao) {
+        this.humidityDao = humidityDao;
+        this.archiveDao = archiveDao;
+    }
 
     @Override
-    public Humidity addHumidityMeasurementToArchive(Long archiveId, Humidity humidityMeasurement) {
+    public HumidityEntity addHumidityMeasurementToArchive(Long archiveId, HumidityEntity humidityMeasurement) {
         return archiveDao.findById(archiveId).map(archive -> {
-            humidityMeasurement.setArchive(archive);
+            humidityMeasurement.setArchiveEntity(archive);
             return humidityDao.save(humidityMeasurement);
         }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override
-    public Page<Humidity> getAllHumidityMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
+    public Page<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
         return humidityDao.findByArchiveId(archiveId, pageable);
     }
 
     @Override
-    public Page<Humidity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
+    public Page<HumidityEntity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
         return humidityDao.findByArchiveIdAndCreatedAt(archiveId, date, pageable);
     }
 
     @Override
-    public Page<Humidity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
+    public Page<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
         return humidityDao.findByArchiveIdAndCreatedAtBetween(archiveId, startDate, endDate, pageable);
     }
 }

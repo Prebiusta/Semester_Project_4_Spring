@@ -1,16 +1,14 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.Model.CarbonDioxide;
+import en.via.SEP4.Model.CarbonDioxideEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Date;
 
 public interface CarbonDioxideService {
-    // TODO: Create Carbon Dioxide Model
-    CarbonDioxide addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxide carbonDioxideMeasurement);
-    Page<CarbonDioxide> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId, Pageable pageable);
-    Page<CarbonDioxide> getCarbonDioxideMeasurementsByDate(Long archiveId, Date date, Pageable pageable);
-    // TODO: Extract startDate and endDate to separate object
-    Page<CarbonDioxide> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable);
+    CarbonDioxideEntity addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxideEntity carbonDioxideMeasurement);
+    Page<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId, Pageable pageable);
+    Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDate(Long archiveId, Date date, Pageable pageable);
+    Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable);
 }

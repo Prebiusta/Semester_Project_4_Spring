@@ -5,5 +5,5 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "carbondioxide", schema = "archive")
-public class CarbonDioxide extends Measurement {
+public class CarbonDioxideEntity extends MeasurementEntity {
 }

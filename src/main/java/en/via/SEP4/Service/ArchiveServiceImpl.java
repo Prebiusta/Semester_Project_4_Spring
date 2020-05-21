@@ -1,7 +1,7 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
-import en.via.SEP4.Model.Archive;
+import en.via.SEP4.Repository.ArchiveDao;
+import en.via.SEP4.Model.ArchiveEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,16 +9,20 @@ import java.util.List;
 
 @Service
 public class ArchiveServiceImpl implements ArchiveService {
+    private final ArchiveDao archiveDao;
+
     @Autowired
-    ArchiveDao archiveDao;
+    public ArchiveServiceImpl(ArchiveDao archiveDao) {
+        this.archiveDao = archiveDao;
+    }
 
     @Override
-    public List<Archive> getAllArchives() {
+    public List<ArchiveEntity> getAllArchives() {
         return archiveDao.findAll();
     }
 
     @Override
-    public Archive getArchiveByArchiveId(Long archiveId) {
+    public ArchiveEntity getArchiveByArchiveId(Long archiveId) {
         return archiveDao.findArchiveById(archiveId);
     }
 }

@@ -1,6 +1,6 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.Model.Humidity;
+import en.via.SEP4.Model.HumidityEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -8,9 +8,9 @@ import java.util.Date;
 
 public interface HumidityService {
     // TODO: Create Humidity Model
-    Humidity addHumidityMeasurementToArchive(Long archiveId, Humidity humidityMeasurement);
-    Page<Humidity> getAllHumidityMeasurementsFromArchiveId(Long archiveId, Pageable pageable);
-    Page<Humidity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable);
+    HumidityEntity addHumidityMeasurementToArchive(Long archiveId, HumidityEntity humidityMeasurement);
+    Page<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId, Pageable pageable);
+    Page<HumidityEntity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable);
     // TODO: Extract startDate and endDate to separate object
-    Page<Humidity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable);
+    Page<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable);
 }

@@ -1,10 +1,10 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.Model.Archive;
+import en.via.SEP4.Model.ArchiveEntity;
 
 import java.util.List;
 
 public interface ArchiveService {
-    List<Archive> getAllArchives();
-    Archive getArchiveByArchiveId(Long archiveId);
+    List<ArchiveEntity> getAllArchives();
+    ArchiveEntity getArchiveByArchiveId(Long archiveId);
 }
