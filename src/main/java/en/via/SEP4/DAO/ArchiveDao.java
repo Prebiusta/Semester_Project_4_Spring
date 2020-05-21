@@ -1,4 +1,4 @@
-package en.via.SEP4.Repository;
+package en.via.SEP4.DAO;
 
 import en.via.SEP4.Model.ArchiveEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
