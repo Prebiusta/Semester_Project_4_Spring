@@ -8,6 +8,8 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +28,8 @@ public class ArchiveEntity {
     @JoinColumn(name = "optimalValues_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private OptimalValuesEntity optimalValuesEntity;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "archive_id")
+    private List<SensorEntity> sensors = new ArrayList<>();
 }
