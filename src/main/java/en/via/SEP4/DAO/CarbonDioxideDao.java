@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 
 public interface CarbonDioxideDao extends JpaRepository<CarbonDioxideEntity,Long> {
@@ -15,4 +16,5 @@ public interface CarbonDioxideDao extends JpaRepository<CarbonDioxideEntity,Long
     Page<CarbonDioxideEntity> findByArchiveEntityIdAndDate(Long archiveId, Date date, Pageable pageable);
     Page<CarbonDioxideEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
     CarbonDioxideEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
+
 }
