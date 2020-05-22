@@ -32,10 +32,6 @@ public class HumidityMeasurementsController {
         return humidityService.addHumidityMeasurementToArchive(archiveId, humidityEntity);
     }
 
-    @GetMapping(value = "archive/{archiveId}/humidity/date")
-    public HumidityEntity getHumidityMeasurementsByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        return humidityService.getHumidityMeasurementsByDate(archiveId, date);
-    }
 
     @GetMapping(value = "archive/{archiveId}/humidity/dateInterval")
     public HumidityEntity getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
