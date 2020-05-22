@@ -24,7 +24,7 @@ public class ArchiveEntity {
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "optimalValues_id")
     private OptimalValuesEntity optimalValuesEntity;
 
