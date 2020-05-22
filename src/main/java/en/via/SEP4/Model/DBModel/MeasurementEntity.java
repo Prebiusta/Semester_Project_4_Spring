@@ -28,13 +28,13 @@ public abstract class MeasurementEntity {
     @NotNull
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "archive_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private ArchiveEntity archiveEntity;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "sensor_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SensorEntity sensorEntity;

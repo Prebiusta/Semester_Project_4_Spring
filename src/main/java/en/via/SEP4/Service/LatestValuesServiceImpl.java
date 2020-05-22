@@ -1,6 +1,5 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
 import en.via.SEP4.DAO.CarbonDioxideDao;
 import en.via.SEP4.DAO.HumidityDao;
 import en.via.SEP4.DAO.TemperatureDao;
@@ -20,18 +19,14 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     private final CarbonDioxideDao carbonDioxideDao;
     private final HumidityDao humidityDao;
     private final TemperatureDao temperatureDao;
-    List<LatestValues> latestValuesForAllArchives;
-    List<ArchiveEntity> allArchives;
-    ArchiveService archiveService;
-
+    private final ArchiveService archiveService;
 
     @Autowired
-    public LatestValuesServiceImpl(CarbonDioxideDao carbonDioxideDao, HumidityDao humidityDao, TemperatureDao temperatureDao) {
+    public LatestValuesServiceImpl(CarbonDioxideDao carbonDioxideDao, HumidityDao humidityDao, TemperatureDao temperatureDao, ArchiveService archiveService) {
         this.carbonDioxideDao = carbonDioxideDao;
         this.humidityDao = humidityDao;
         this.temperatureDao = temperatureDao;
-         this.latestValuesForAllArchives = new ArrayList<>();
-
+        this.archiveService = archiveService;
     }
 
     @Override
@@ -46,6 +41,9 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     @Override
      public List<LatestValues> getTheLatestMeasurementsForAllArchives()
     {
+        List<LatestValues> latestValuesForAllArchives = new ArrayList<>();
+        List<ArchiveEntity> allArchives;
+
         ArchiveEntity archiveId;
         allArchives = archiveService.getAllArchives();
         for (ArchiveEntity allArchive : allArchives) {
