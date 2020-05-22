@@ -32,7 +32,7 @@ public class LatestValuesController {
         return latestValuesService.getTheLatestMeasurementValues(archiveService.getArchiveByArchiveId(archiveId));
     }
 
-    @GetMapping(value = "archive/{archiveId}/latestValues")
+    @GetMapping(value = "archive/latestValues")
     List<LatestValues> getTheLatestMeasurementValuesForAllArchives()
     {
         ArchiveEntity archiveId;
