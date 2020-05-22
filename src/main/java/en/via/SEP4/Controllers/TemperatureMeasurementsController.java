@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -23,7 +24,7 @@ public class TemperatureMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/temperature")
-    public TemperatureEntity getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+    public List<TemperatureEntity> getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
         return temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId);
     }
 
@@ -35,7 +36,7 @@ public class TemperatureMeasurementsController {
 
 
     @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
-    public TemperatureEntity getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
+    public List<TemperatureEntity> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                  @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                                                                  @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate);

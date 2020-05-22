@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -24,7 +25,7 @@ public class CarbonDioxideMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/carbondioxide")
-    public CarbonDioxideEntity getAllCarbonDioxideMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+    public List<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
         return carbonDioxideService.getAllCarbonDioxideMeasurementsFromArchiveId(archiveId);
     }
 
@@ -36,7 +37,7 @@ public class CarbonDioxideMeasurementsController {
 
 
     @GetMapping(value = "archive/{archiveId}/carbondioxide/dateInterval")
-    public CarbonDioxideEntity getCarbonDioxideMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+    public List<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return carbonDioxideService.getCarbonDioxideMeasurementsByDateInterval(archiveId, startDate, endDate);
     }
 

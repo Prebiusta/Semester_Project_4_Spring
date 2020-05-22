@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class TemperatureServiceImpl implements TemperatureService {
@@ -31,12 +32,12 @@ public class TemperatureServiceImpl implements TemperatureService {
     }
 
     @Override
-    public TemperatureEntity getAllTemperatureMeasurementsFromArchiveId(Long archiveId) {
+    public List<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId) {
         return temperatureDao.findByArchiveEntityId(archiveId);
     }
 
     @Override
-    public TemperatureEntity getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
+    public List<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
         return temperatureDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
 

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -22,7 +23,7 @@ public class HumidityMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/humidity")
-    public HumidityEntity getHumidityMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+    public List<HumidityEntity> getHumidityMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
         return humidityService.getAllHumidityMeasurementsFromArchiveId(archiveId);
     }
 
@@ -34,7 +35,7 @@ public class HumidityMeasurementsController {
 
 
     @GetMapping(value = "archive/{archiveId}/humidity/dateInterval")
-    public HumidityEntity getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+    public List<HumidityEntity> getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate);
     }
 
