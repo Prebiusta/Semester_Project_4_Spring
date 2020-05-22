@@ -24,9 +24,8 @@ public class ArchiveEntity {
     @NotNull
     private String name;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "optimalValues_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "optimalValues_id")
     private OptimalValuesEntity optimalValuesEntity;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

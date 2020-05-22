@@ -34,6 +34,11 @@ public abstract class MeasurementEntity {
     @JsonIgnore
     private ArchiveEntity archiveEntity;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "sensor_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private SensorEntity sensorEntity;
+
     public MeasurementEntity() {
         this.date = new Date();
     }
