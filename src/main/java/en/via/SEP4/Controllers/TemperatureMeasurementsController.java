@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,22 +26,22 @@ public class TemperatureMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/temperature")
-    public List<TemperatureEntity> getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
-        return temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId);
+    public ResponseEntity<List<TemperatureEntity>> getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+        return ResponseEntity.status(HttpStatus.OK).body(temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId));
     }
 
     @PostMapping(value = "archive/{archiveId}/temperature")
-    public TemperatureEntity createTemperatureForArchive(@PathVariable(value = "archiveId") Long archiveId,
-                                                         @Valid @RequestBody TemperatureEntity temperatureEntity) {
-        return temperatureService.addTemperatureMeasurementToArchive(archiveId, temperatureEntity);
+    public ResponseEntity<TemperatureEntity> createTemperatureForArchive(@PathVariable(value = "archiveId") Long archiveId,
+                                                                         @Valid @RequestBody TemperatureEntity temperatureEntity) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(temperatureService.addTemperatureMeasurementToArchive(archiveId, temperatureEntity));
     }
 
 
     @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
-    public List<TemperatureEntity> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
+    public ResponseEntity<List<TemperatureEntity>> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                  @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                                                                  @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-        return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate);
+        return ResponseEntity.status(HttpStatus.OK).body(temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate));
     }
 
 
