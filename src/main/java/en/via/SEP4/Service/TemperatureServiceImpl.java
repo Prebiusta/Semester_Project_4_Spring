@@ -31,17 +31,13 @@ public class TemperatureServiceImpl implements TemperatureService {
     }
 
     @Override
-    public Page<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
-        return temperatureDao.findByArchiveEntityId(archiveId, pageable);
+    public TemperatureEntity getAllTemperatureMeasurementsFromArchiveId(Long archiveId) {
+        return temperatureDao.findByArchiveEntityId(archiveId);
     }
 
     @Override
-    public Page<TemperatureEntity> getTemperatureMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return temperatureDao.findByArchiveEntityIdAndDate(archiveId, date, pageable);
+    public TemperatureEntity getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
+        return temperatureDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
 
-    @Override
-    public Page<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return temperatureDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate, pageable);
-    }
 }

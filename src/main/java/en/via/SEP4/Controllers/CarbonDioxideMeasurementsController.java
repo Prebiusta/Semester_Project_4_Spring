@@ -24,8 +24,8 @@ public class CarbonDioxideMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/carbondioxide")
-    public Page<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId, Pageable pageable) {
-        return carbonDioxideService.getAllCarbonDioxideMeasurementsFromArchiveId(archiveId, pageable);
+    public CarbonDioxideEntity getAllCarbonDioxideMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+        return carbonDioxideService.getAllCarbonDioxideMeasurementsFromArchiveId(archiveId);
     }
 
     @PostMapping(value = "archive/{archiveId}/carbondioxide")
@@ -34,16 +34,10 @@ public class CarbonDioxideMeasurementsController {
         return carbonDioxideService.addCarbonDioxideMeasurementToArchive(archiveId, carbonDioxideEntity);
     }
 
-    @GetMapping(value = "archive/{archiveId}/carbondioxide/date")
-    public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-                                                                        Pageable pageable) {
-        return carbonDioxideService.getCarbonDioxideMeasurementsByDate(archiveId, date, pageable);
-    }
 
     @GetMapping(value = "archive/{archiveId}/carbondioxide/dateInterval")
-    public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
-                                                                                Pageable pageable) {
-        return carbonDioxideService.getCarbonDioxideMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
+    public CarbonDioxideEntity getCarbonDioxideMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        return carbonDioxideService.getCarbonDioxideMeasurementsByDateInterval(archiveId, startDate, endDate);
     }
 
 

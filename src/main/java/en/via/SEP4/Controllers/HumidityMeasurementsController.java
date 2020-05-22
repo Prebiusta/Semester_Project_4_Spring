@@ -22,9 +22,8 @@ public class HumidityMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/humidity")
-    public Page<HumidityEntity> getHumidityMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId,
-                                                                   Pageable pageable) {
-        return humidityService.getAllHumidityMeasurementsFromArchiveId(archiveId, pageable);
+    public HumidityEntity getHumidityMeasurementsByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+        return humidityService.getAllHumidityMeasurementsFromArchiveId(archiveId);
     }
 
     @PostMapping(value = "archive/{archiveId}/humidity")
@@ -34,15 +33,13 @@ public class HumidityMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/humidity/date")
-    public Page<HumidityEntity> getHumidityMeasurementsByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
-                                                              Pageable pageable) {
-        return humidityService.getHumidityMeasurementsByDate(archiveId, date, pageable);
+    public HumidityEntity getHumidityMeasurementsByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+        return humidityService.getHumidityMeasurementsByDate(archiveId, date);
     }
 
     @GetMapping(value = "archive/{archiveId}/humidity/dateInterval")
-    public Page<HumidityEntity> getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
-                                                                      Pageable pageable) {
-        return humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
+    public HumidityEntity getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        return humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate);
     }
 
 

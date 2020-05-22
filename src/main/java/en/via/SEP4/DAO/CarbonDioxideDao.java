@@ -12,9 +12,9 @@ import java.util.List;
 
 
 public interface CarbonDioxideDao extends JpaRepository<CarbonDioxideEntity,Long> {
-    Page<CarbonDioxideEntity> findByArchiveEntityId(Long archiveId, Pageable pageable);
-    Page<CarbonDioxideEntity> findByArchiveEntityIdAndDate(Long archiveId, Date date, Pageable pageable);
-    Page<CarbonDioxideEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
+    CarbonDioxideEntity findByArchiveEntityId(Long archiveId);
+    CarbonDioxideEntity findByArchiveEntityIdAndDate(Long archiveId, Date date);
+    CarbonDioxideEntity findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
     CarbonDioxideEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
 
 }

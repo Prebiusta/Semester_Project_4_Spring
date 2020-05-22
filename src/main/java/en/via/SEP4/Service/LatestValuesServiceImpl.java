@@ -20,6 +20,9 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     private final CarbonDioxideDao carbonDioxideDao;
     private final HumidityDao humidityDao;
     private final TemperatureDao temperatureDao;
+    List<LatestValues> latestValuesForAllArchives;
+    List<ArchiveEntity> allArchives;
+    ArchiveService archiveService;
 
 
     @Autowired
@@ -27,6 +30,7 @@ public class LatestValuesServiceImpl implements LatestValuesService {
         this.carbonDioxideDao = carbonDioxideDao;
         this.humidityDao = humidityDao;
         this.temperatureDao = temperatureDao;
+         this.latestValuesForAllArchives = new ArrayList<>();
 
     }
 
@@ -38,6 +42,19 @@ public class LatestValuesServiceImpl implements LatestValuesService {
 
         return new LatestValues(archiveId, latestTemperature, latestCarbonDioxide, latestHumidity);
     }
+
+    @Override
+     public List<LatestValues> getTheLatestMeasurementsForAllArchives()
+    {
+        ArchiveEntity archiveId;
+        allArchives = archiveService.getAllArchives();
+        for (ArchiveEntity allArchive : allArchives) {
+            archiveId = allArchive;
+            latestValuesForAllArchives.add(getTheLatestMeasurementValues(archiveId));
+        }
+        return latestValuesForAllArchives;
+    }
+
 
 
 }

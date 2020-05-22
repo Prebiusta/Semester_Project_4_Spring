@@ -23,9 +23,8 @@ public class TemperatureMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/temperature")
-    public Page<TemperatureEntity> getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId,
-                                                              Pageable pageable) {
-        return temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId, pageable);
+    public TemperatureEntity getTemperaturesByArchiveId(@PathVariable(name = "archiveId") Long archiveId) {
+        return temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId);
     }
 
     @PostMapping(value = "archive/{archiveId}/temperature")
@@ -35,18 +34,17 @@ public class TemperatureMeasurementsController {
     }
 
     @GetMapping(value = "archive/{archiveId}/temperature/date")
-    public Page<TemperatureEntity> getTemperaturesByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
-                                                         Pageable pageable) {
-        return temperatureService.getTemperatureMeasurementsByDate(archiveId, date, pageable);
+    public TemperatureEntity getTemperaturesByDate(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "specificDate") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date
+                                                        ) {
+        return temperatureService.getTemperatureMeasurementsByDate(archiveId, date);
     }
 
 
     @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
-    public Page<TemperatureEntity> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
+    public TemperatureEntity getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                  @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                                                                 @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate,
-                                                                 Pageable pageable) {
-        return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate, pageable);
+                                                                 @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate);
     }
 
 

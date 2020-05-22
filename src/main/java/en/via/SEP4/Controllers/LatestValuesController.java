@@ -35,14 +35,7 @@ public class LatestValuesController {
     @GetMapping(value = "archive/latestValues")
     List<LatestValues> getTheLatestMeasurementValuesForAllArchives()
     {
-        ArchiveEntity archiveId;
-        List<LatestValues> latestValuesForAllArchives = new ArrayList<>();
-        List<ArchiveEntity> allArchives;
-        allArchives = archiveService.getAllArchives();
-        for (ArchiveEntity allArchive : allArchives) {
-            archiveId = allArchive;
-            latestValuesForAllArchives.add(latestValuesService.getTheLatestMeasurementValues(archiveId));
-        }
-        return latestValuesForAllArchives;
+
+        return latestValuesService.getTheLatestMeasurementsForAllArchives();
     }
 }

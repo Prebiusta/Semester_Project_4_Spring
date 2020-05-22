@@ -8,8 +8,7 @@ import java.util.Date;
 
 public interface HumidityService {
     HumidityEntity addHumidityMeasurementToArchive(Long archiveId, HumidityEntity humidityMeasurement);
-    Page<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId, Pageable pageable);
-    Page<HumidityEntity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable);
+    HumidityEntity getAllHumidityMeasurementsFromArchiveId(Long archiveId);
     // TODO: Extract startDate and endDate to separate object
-    Page<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable);
+    HumidityEntity getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
 }

@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface HumidityDao extends JpaRepository<HumidityEntity,Long> {
-    Page<HumidityEntity> findByArchiveEntityId(Long archiveId, Pageable pageable);
-    Page<HumidityEntity> findByArchiveEntityIdAndDate(Long archiveId, Date date, Pageable pageable);
-    Page<HumidityEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate, Pageable pageable);
+    HumidityEntity findByArchiveEntityId(Long archiveId);
+    HumidityEntity findByArchiveEntityIdAndDate(Long archiveId, Date date);
+   HumidityEntity findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
     HumidityEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
 
 }

@@ -8,8 +8,7 @@ import java.util.Date;
 
 public interface TemperatureService {
     TemperatureEntity addTemperatureMeasurementToArchive(Long archiveId, TemperatureEntity temperatureMeasurement);
-    Page<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId, Pageable pageable);
-    Page<TemperatureEntity> getTemperatureMeasurementsByDate(Long archiveId, Date date, Pageable pageable);
+    TemperatureEntity getAllTemperatureMeasurementsFromArchiveId(Long archiveId);
     // TODO: Extract startDate and endDate to separate object
-    Page<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable);
+    TemperatureEntity getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
 }

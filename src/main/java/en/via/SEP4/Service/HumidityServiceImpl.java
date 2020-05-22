@@ -32,17 +32,12 @@ public class HumidityServiceImpl implements HumidityService {
     }
 
     @Override
-    public Page<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
-        return humidityDao.findByArchiveEntityId(archiveId, pageable);
+    public HumidityEntity getAllHumidityMeasurementsFromArchiveId(Long archiveId) {
+        return humidityDao.findByArchiveEntityId(archiveId);
     }
 
     @Override
-    public Page<HumidityEntity> getHumidityMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return humidityDao.findByArchiveEntityIdAndDate(archiveId, date, pageable);
-    }
-
-    @Override
-    public Page<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return humidityDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate, pageable);
+    public HumidityEntity getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
+        return humidityDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
 }

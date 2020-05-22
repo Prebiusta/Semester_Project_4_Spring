@@ -32,17 +32,12 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     }
 
     @Override
-    public Page<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId, Pageable pageable) {
-        return carbonDioxideDao.findByArchiveEntityId(archiveId, pageable);
+    public CarbonDioxideEntity getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId) {
+        return carbonDioxideDao.findByArchiveEntityId(archiveId);
     }
 
     @Override
-    public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDate(Long archiveId, Date date, Pageable pageable) {
-        return carbonDioxideDao.findByArchiveEntityIdAndDate(archiveId, date, pageable);
-    }
-
-    @Override
-    public Page<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate, Pageable pageable) {
-        return carbonDioxideDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate, pageable);
+    public CarbonDioxideEntity getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate){
+        return carbonDioxideDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
 }
