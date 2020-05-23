@@ -9,5 +9,5 @@ import java.util.Date;
 public interface CarbonDioxideService {
     CarbonDioxideEntity addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxideEntity carbonDioxideMeasurement);
     CarbonDioxideEntity getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId);
-   CarbonDioxideEntity getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
+    CarbonDioxideEntity getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
 }

@@ -36,8 +36,8 @@ public class TemperatureMeasurementsController {
 
     @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
     public TemperatureEntity getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
-                                                                 @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                                                                 @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+                                                           @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                                           @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate);
     }
 
