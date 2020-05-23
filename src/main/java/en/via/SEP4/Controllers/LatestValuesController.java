@@ -5,6 +5,8 @@ import en.via.SEP4.Model.Utility.LatestValues;
 import en.via.SEP4.Service.ArchiveService;
 import en.via.SEP4.Service.LatestValuesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,15 +29,15 @@ public class LatestValuesController {
     }
 
     @GetMapping(value = "archive/{archiveId}/latestValuesByArchiveId")
-    LatestValues getTheLatestMeasurementValuesByArchiveId(@PathVariable(value = "archiveId") Long archiveId)
+    ResponseEntity<LatestValues> getTheLatestMeasurementValuesByArchiveId(@PathVariable(value = "archiveId") Long archiveId)
     {
-        return latestValuesService.getTheLatestMeasurementValues(archiveService.getArchiveByArchiveId(archiveId));
+        return ResponseEntity.status(HttpStatus.OK).body(latestValuesService.getTheLatestMeasurementValues(archiveService.getArchiveByArchiveId(archiveId)));
     }
 
     @GetMapping(value = "archive/latestValues")
-    List<LatestValues> getTheLatestMeasurementValuesForAllArchives()
+    ResponseEntity<List<LatestValues>> getTheLatestMeasurementValuesForAllArchives()
     {
 
-        return latestValuesService.getTheLatestMeasurementsForAllArchives();
+        return ResponseEntity.status(HttpStatus.OK).body(latestValuesService.getTheLatestMeasurementsForAllArchives());
     }
 }

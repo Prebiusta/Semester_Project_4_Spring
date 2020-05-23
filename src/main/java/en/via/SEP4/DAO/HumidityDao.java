@@ -10,9 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface HumidityDao extends JpaRepository<HumidityEntity,Long> {
-    HumidityEntity findByArchiveEntityId(Long archiveId);
-    HumidityEntity findByArchiveEntityIdAndDate(Long archiveId, Date date);
-   HumidityEntity findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
+    List<HumidityEntity> findByArchiveEntityId(Long archiveId);
+    List<HumidityEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
     HumidityEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
 
 }

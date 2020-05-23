@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class CarbonDioxideServiceImpl implements CarbonDioxideService {
@@ -32,12 +33,12 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     }
 
     @Override
-    public CarbonDioxideEntity getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId) {
+    public List<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId) {
         return carbonDioxideDao.findByArchiveEntityId(archiveId);
     }
 
     @Override
-    public CarbonDioxideEntity getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate){
+    public List<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate){
         return carbonDioxideDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
 }

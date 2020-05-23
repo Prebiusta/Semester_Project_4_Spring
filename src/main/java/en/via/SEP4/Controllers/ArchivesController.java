@@ -3,6 +3,8 @@ package en.via.SEP4.Controllers;
 import en.via.SEP4.Model.DBModel.ArchiveEntity;
 import en.via.SEP4.Service.ArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +23,14 @@ public class ArchivesController {
     }
 
     @GetMapping(value = "/archive")
-    public List<ArchiveEntity> getAllArchives() {
-        return archiveService.getAllArchives();
+    public ResponseEntity<List<ArchiveEntity>> getAllArchives() {
+        return ResponseEntity.status(HttpStatus.OK).body(archiveService.getAllArchives()) ;
     }
 
     @GetMapping(value = "archive/{archiveId}")
-    public ArchiveEntity getArchiveByArchiveId(@PathVariable(name = "archiveId") Long archiveId
+    public ResponseEntity<ArchiveEntity> getArchiveByArchiveId(@PathVariable(name = "archiveId") Long archiveId
     ) {
-        return archiveService.getArchiveByArchiveId(archiveId);
+        return ResponseEntity.status(HttpStatus.OK).body(archiveService.getArchiveByArchiveId(archiveId));
     }
 }
 

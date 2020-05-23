@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class HumidityServiceImpl implements HumidityService {
@@ -32,12 +33,12 @@ public class HumidityServiceImpl implements HumidityService {
     }
 
     @Override
-    public HumidityEntity getAllHumidityMeasurementsFromArchiveId(Long archiveId) {
+    public List<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId) {
         return humidityDao.findByArchiveEntityId(archiveId);
     }
 
     @Override
-    public HumidityEntity getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
+    public List<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
         return humidityDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
 }

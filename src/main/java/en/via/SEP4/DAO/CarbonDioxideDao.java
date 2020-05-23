@@ -12,9 +12,8 @@ import java.util.List;
 
 
 public interface CarbonDioxideDao extends JpaRepository<CarbonDioxideEntity,Long> {
-    CarbonDioxideEntity findByArchiveEntityId(Long archiveId);
-    CarbonDioxideEntity findByArchiveEntityIdAndDate(Long archiveId, Date date);
-    CarbonDioxideEntity findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
     CarbonDioxideEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
+    List<CarbonDioxideEntity> findByArchiveEntityId(Long archiveId);
+    List<CarbonDioxideEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
 
 }

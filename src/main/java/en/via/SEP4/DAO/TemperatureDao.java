@@ -10,9 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface TemperatureDao extends JpaRepository<TemperatureEntity, Long> {
- TemperatureEntity findByArchiveEntityId(Long archiveId);
-    TemperatureEntity findByArchiveEntityIdAndDate(Long archiveId, Date date);
-    TemperatureEntity findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
+   List<TemperatureEntity> findByArchiveEntityId(Long archiveId);
+    List<TemperatureEntity> findByArchiveEntityIdAndDateBetween(Long archiveId, Date startDate, Date endDate);
     TemperatureEntity findFirstByArchiveEntityIdOrderByIdDesc(Long archiveId);
 
 }
