@@ -1,6 +1,7 @@
 package en.via.SEP4.Controllers;
 
 import en.via.SEP4.Model.DBModel.HumidityEntity;
+import en.via.SEP4.Model.Utility.StatisticsValues;
 import en.via.SEP4.Service.HumidityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,7 +38,7 @@ public class HumidityMeasurementsController {
 
 
     @GetMapping(value = "archive/{archiveId}/humidity/dateInterval")
-    public ResponseEntity<List<HumidityEntity>> getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+    public ResponseEntity<List<StatisticsValues>> getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return ResponseEntity.status(HttpStatus.OK).body(humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate));
     }
 
