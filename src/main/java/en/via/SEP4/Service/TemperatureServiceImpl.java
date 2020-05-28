@@ -49,10 +49,11 @@ public class TemperatureServiceImpl implements TemperatureService {
         List<FactTemperatureEntity> facts = factTemperatureDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
 
         List<StatisticsValues> temperatureStatistics = new ArrayList<StatisticsValues>();
+        Date date;
         for (int i = 0 ; i < facts.size();i++)
         {
-            facts.get(i).getDate().getRepresentedDate().setTime(facts.get(i).getTime().getMinutesSinceMidnight());
-            temperatureStatistics.add(new StatisticsValues(facts.get(i).getTemperature(),facts.get(i).getDate().getRepresentedDate()));
+            date = new Date(facts.get(i).getDate().getRepresentedDate().getTime() + (facts.get(i).getTime().getMinutesSinceMidnight() * 60000));
+            temperatureStatistics.add(new StatisticsValues(facts.get(i).getTemperature(),date));
         }
 
         return temperatureStatistics;

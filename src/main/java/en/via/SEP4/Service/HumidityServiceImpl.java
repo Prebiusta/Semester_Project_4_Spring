@@ -46,10 +46,11 @@ public class HumidityServiceImpl implements HumidityService {
         List<FactHumidityEntity> facts = factHumidityDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
 
         List<StatisticsValues> humidityStatistics = new ArrayList<StatisticsValues>();
+        Date date;
         for (int i = 0 ; i < facts.size();i++)
         {
-            facts.get(i).getDate().getRepresentedDate().setTime(facts.get(i).getTime().getMinutesSinceMidnight());
-            humidityStatistics.add(new StatisticsValues(facts.get(i).getHumidity(),facts.get(i).getDate().getRepresentedDate()));
+            date = new Date(facts.get(i).getDate().getRepresentedDate().getTime() + (facts.get(i).getTime().getMinutesSinceMidnight() * 60000));
+            humidityStatistics.add(new StatisticsValues(facts.get(i).getHumidity(),date));
         }
 
         return humidityStatistics;
@@ -61,7 +62,7 @@ public class HumidityServiceImpl implements HumidityService {
         float sum = 0;
         for (int i = 0 ; i < facts.size();i++)
         {
-            sum = facts.get(i).getHumidity();
+            sum += facts.get(i).getHumidity();
         }
         return sum/facts.size();
     }
