@@ -44,4 +44,14 @@ public class CarbonDioxideMeasurementsController {
                                                                                                 @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return ResponseEntity.status(HttpStatus.OK).body(carbonDioxideService.getCarbonDioxideMeasurementsByDateInterval(archiveId, startDate, endDate));
     }
+
+    @GetMapping(value = "archive/{archiveId}/averagecarbondioxide/dateInterval")
+    public ResponseEntity<?> getAverageCarbonDioxideMeasurementForArchiveByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
+                                                                                            @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                                                                            @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(carbonDioxideService.getAverageCarbonDioxideMeasurementForArchiveByDateInterval(archiveId,startDate,endDate));
+
+    }
+
 }
