@@ -12,4 +12,6 @@ public interface HumidityService {
     List<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId);
     // TODO: Extract startDate and endDate to separate object
     List<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
+    float getAverageHumidityMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate);
+
 }

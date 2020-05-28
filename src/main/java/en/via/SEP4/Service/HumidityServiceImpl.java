@@ -41,4 +41,9 @@ public class HumidityServiceImpl implements HumidityService {
     public List<HumidityEntity> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
         return humidityDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
+
+    @Override
+    public float getAverageHumidityMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate) {
+        return 0;
+    }
 }

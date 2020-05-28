@@ -12,4 +12,5 @@ public interface TemperatureService {
     List<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId);
     // TODO: Extract startDate and endDate to separate object
     List<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
+    float getAverageTemperatureMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate);
 }

@@ -17,6 +17,7 @@ public class TemperatureServiceImpl implements TemperatureService {
     private final TemperatureDao temperatureDao;
     private final ArchiveDao archiveDao;
 
+
     @Autowired
     public TemperatureServiceImpl(TemperatureDao temperatureDao, ArchiveDao archiveDao) {
         this.temperatureDao = temperatureDao;
@@ -39,6 +40,11 @@ public class TemperatureServiceImpl implements TemperatureService {
     @Override
     public List<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
         return temperatureDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
+    }
+
+    @Override
+    public float getAverageTemperatureMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate) {
+        return 0;
     }
 
 }

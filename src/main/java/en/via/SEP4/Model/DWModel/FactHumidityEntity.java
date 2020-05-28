@@ -17,15 +17,19 @@ public class FactHumidityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "A_ID")
     private DimensionArchiveEntity archive;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "S_ID")
     private DimensionSensorEntity sensor;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "D_ID")
     private DimensionDateEntity date;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "T_ID")
     private DimensionTimeOfDayEntity time;

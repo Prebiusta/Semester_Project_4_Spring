@@ -41,4 +41,9 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     public List<CarbonDioxideEntity> getCarbonDioxideMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate){
         return carbonDioxideDao.findByArchiveEntityIdAndDateBetween(archiveId, startDate, endDate);
     }
+
+    @Override
+    public float getAverageCarbonDioxideMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate) {
+        return 0;
+    }
 }
