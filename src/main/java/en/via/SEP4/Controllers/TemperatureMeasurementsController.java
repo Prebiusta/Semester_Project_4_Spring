@@ -1,6 +1,7 @@
 package en.via.SEP4.Controllers;
 
 import en.via.SEP4.Model.DBModel.TemperatureEntity;
+import en.via.SEP4.Model.Utility.StatisticsValues;
 import en.via.SEP4.Service.ArchiveService;
 import en.via.SEP4.Service.TemperatureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,13 @@ public class TemperatureMeasurementsController {
 
 
     @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
-    public ResponseEntity<List<TemperatureEntity>> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
-                                                                 @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
-                                                                 @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+    public ResponseEntity<List<StatisticsValues>> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
+                                                                                @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                                                                @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return ResponseEntity.status(HttpStatus.OK).body(temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate));
     }
 
-    @GetMapping(value = "archive/{archiveId}/averageTemperature")
+    @GetMapping(value = "archive/{archiveId}/averageTemperature/dateInterval")
     public ResponseEntity<?> getAverageTemperatureMeasurementForArchiveByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                                         @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                                                                                         @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)

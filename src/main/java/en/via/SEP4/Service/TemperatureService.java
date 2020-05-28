@@ -1,6 +1,7 @@
 package en.via.SEP4.Service;
 
 import en.via.SEP4.Model.DBModel.TemperatureEntity;
+import en.via.SEP4.Model.Utility.StatisticsValues;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,6 +12,6 @@ public interface TemperatureService {
     TemperatureEntity addTemperatureMeasurementToArchive(Long archiveId, TemperatureEntity temperatureMeasurement);
     List<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId);
     // TODO: Extract startDate and endDate to separate object
-    List<TemperatureEntity> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
+    List<StatisticsValues> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate);
     float getAverageTemperatureMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate);
 }
