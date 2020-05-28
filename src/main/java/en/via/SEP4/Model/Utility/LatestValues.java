@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LatestValues {
     private ArchiveEntity archive;
-    private MeasurementEntity temperature;
-    private MeasurementEntity carbonDioxide;
-    private MeasurementEntity humidity;
+    private float temperature;
+    private float carbonDioxide;
+    private float humidity;
 }

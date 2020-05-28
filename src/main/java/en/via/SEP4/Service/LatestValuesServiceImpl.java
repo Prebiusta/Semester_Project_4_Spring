@@ -36,7 +36,7 @@ public class LatestValuesServiceImpl implements LatestValuesService {
         HumidityEntity latestHumidity = humidityDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId.getId());
         TemperatureEntity latestTemperature = temperatureDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId.getId());
 
-        return new LatestValues(archiveId, latestTemperature, latestCarbonDioxide, latestHumidity);
+        return new LatestValues(archiveId, latestTemperature.getValue(), latestCarbonDioxide.getValue(), latestHumidity.getValue());
     }
 
     @Override
