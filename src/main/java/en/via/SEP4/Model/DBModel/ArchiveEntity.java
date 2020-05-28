@@ -1,5 +1,6 @@
 package en.via.SEP4.Model.DBModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,6 +29,7 @@ public class ArchiveEntity {
     @JoinColumn(name = "optimalValues_id")
     private OptimalValuesEntity optimalValuesEntity;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "archive_id")
     private List<SensorEntity> sensors = new ArrayList<>();
