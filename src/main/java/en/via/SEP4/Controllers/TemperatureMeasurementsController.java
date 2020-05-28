@@ -44,7 +44,7 @@ public class TemperatureMeasurementsController {
         return ResponseEntity.status(HttpStatus.OK).body(temperatureService.getTemperatureMeasurementsByDateInterval(archiveId, startDate, endDate));
     }
 
-    @GetMapping(value = "archive/{archiveId}/averageTemperature/dateInterval")
+    @GetMapping(value = "archive/{archiveId}/averageTemperature")
     public ResponseEntity<?> getAverageTemperatureMeasurementForArchiveByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                                         @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
                                                                                         @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)
