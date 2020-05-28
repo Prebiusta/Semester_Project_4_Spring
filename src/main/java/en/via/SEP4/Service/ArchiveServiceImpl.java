@@ -1,6 +1,6 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
+import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
 import en.via.SEP4.Model.DBModel.ArchiveEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

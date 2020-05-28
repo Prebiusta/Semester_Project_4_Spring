@@ -1,9 +1,9 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
-import en.via.SEP4.DAO.CarbonDioxideDao;
-import en.via.SEP4.DAO.HumidityDao;
-import en.via.SEP4.DAO.TemperatureDao;
+import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
+import en.via.SEP4.DAO.DatabaseDAO.CarbonDioxideDao;
+import en.via.SEP4.DAO.DatabaseDAO.HumidityDao;
+import en.via.SEP4.DAO.DatabaseDAO.TemperatureDao;
 import en.via.SEP4.Model.DBModel.ArchiveEntity;
 import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Model.DBModel.HumidityEntity;

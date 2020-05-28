@@ -1,12 +1,10 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
-import en.via.SEP4.DAO.HumidityDao;
+import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
+import en.via.SEP4.DAO.DatabaseDAO.HumidityDao;
 import en.via.SEP4.Model.DBModel.HumidityEntity;
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 

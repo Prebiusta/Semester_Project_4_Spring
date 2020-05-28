@@ -27,9 +27,7 @@ public class DimensionArchiveEntity {
     @NotNull
     private String name;
 
-    @NotNull
     private Date validFrom;
 
-    @NotNull
     private Date validTo;
 }
