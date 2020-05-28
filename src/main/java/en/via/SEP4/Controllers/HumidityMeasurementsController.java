@@ -41,5 +41,14 @@ public class HumidityMeasurementsController {
         return ResponseEntity.status(HttpStatus.OK).body(humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate));
     }
 
+    @GetMapping(value = "archive/{archiveId}/averageHumidity/dateInterval")
+    public ResponseEntity<?> getAverageHumidityMeasurementForArchiveByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
+                                                                                        @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+                                                                                        @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate)
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(humidityService.getAverageHumidityMeasurementForArchiveByDateInterval(archiveId,startDate,endDate));
+
+    }
+
 
 }
