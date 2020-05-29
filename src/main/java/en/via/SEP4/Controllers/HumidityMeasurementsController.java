@@ -30,13 +30,6 @@ public class HumidityMeasurementsController {
         return ResponseEntity.status(HttpStatus.OK).body(humidityService.getAllHumidityMeasurementsFromArchiveId(archiveId));
     }
 
-    @PostMapping(value = "archive/{archiveId}/humidity")
-    public ResponseEntity<HumidityEntity> createHumidityForArchive(@PathVariable(value = "archiveId") Long archiveId,
-                                                   @Valid @RequestBody HumidityEntity humidityEntity) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(humidityService.addHumidityMeasurementToArchive(archiveId, humidityEntity));
-    }
-
-
     @GetMapping(value = "archive/{archiveId}/humidity/dateInterval")
     public ResponseEntity<List<StatisticsValues>> getHumidityMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId, @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate, @Valid @RequestParam(name = "endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
         return ResponseEntity.status(HttpStatus.OK).body(humidityService.getHumidityMeasurementsByDateInterval(archiveId, startDate, endDate));

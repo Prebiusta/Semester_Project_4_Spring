@@ -2,6 +2,7 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
 import en.via.SEP4.DAO.DatabaseDAO.CarbonDioxideDao;
+import en.via.SEP4.DAO.DatabaseDAO.SensorDao;
 import en.via.SEP4.DAO.WarehouseDAO.FactCarbonDioxideDao;
 import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Model.DWModel.FactCarbonDioxideEntity;
@@ -19,25 +20,28 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     private final CarbonDioxideDao carbonDioxideDao;
     private final ArchiveDao archiveDao;
     private final FactCarbonDioxideDao factCarbonDioxideDao;
+    private final SensorDao sensorDao;
+
 
     @Autowired
-    public CarbonDioxideServiceImpl(CarbonDioxideDao carbonDioxideDao, ArchiveDao archiveDao, FactCarbonDioxideDao factCarbonDioxideDao) {
+    public CarbonDioxideServiceImpl(CarbonDioxideDao carbonDioxideDao, ArchiveDao archiveDao, FactCarbonDioxideDao factCarbonDioxideDao, SensorDao sensorDao) {
         this.carbonDioxideDao = carbonDioxideDao;
         this.archiveDao = archiveDao;
         this.factCarbonDioxideDao = factCarbonDioxideDao;
+        this.sensorDao = sensorDao;
     }
 
     @Override
     public CarbonDioxideEntity addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxideEntity carbonDioxideMeasurement) {
-        return archiveDao.findById(archiveId).map(archive -> {
-            carbonDioxideMeasurement.setArchiveEntity(archive);
+        return sensorDao.findByArchiveEntity_Id(archiveId).map(sensor -> {
+            carbonDioxideMeasurement.setSensorEntity(sensor);
             return carbonDioxideDao.save(carbonDioxideMeasurement);
         }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override
     public List<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId) {
-        return carbonDioxideDao.findByArchiveEntityId(archiveId);
+        return carbonDioxideDao.findBySensorEntityArchiveEntity_Id(archiveId);
     }
 
     @Override

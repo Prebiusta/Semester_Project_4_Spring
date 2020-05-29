@@ -30,15 +30,16 @@ public class HumidityServiceImpl implements HumidityService {
 
     @Override
     public HumidityEntity addHumidityMeasurementToArchive(Long archiveId, HumidityEntity humidityMeasurement) {
-        return archiveDao.findById(archiveId).map(archive -> {
-            humidityMeasurement.setArchiveEntity(archive);
-            return humidityDao.save(humidityMeasurement);
-        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
+        return null;
+//        return archiveDao.findById(archiveId).map(archive -> {
+//            humidityMeasurement.setArchiveEntity(archive);
+//            return humidityDao.save(humidityMeasurement);
+//        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override
     public List<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId) {
-        return humidityDao.findByArchiveEntityId(archiveId);
+        return humidityDao.findBySensorEntityArchiveEntity_Id(archiveId);
     }
 
     @Override

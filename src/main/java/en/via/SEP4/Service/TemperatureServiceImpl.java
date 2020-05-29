@@ -2,10 +2,8 @@ package en.via.SEP4.Service;
 
 import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
 import en.via.SEP4.DAO.DatabaseDAO.TemperatureDao;
-import en.via.SEP4.DAO.WarehouseDAO.FactCarbonDioxideDao;
 import en.via.SEP4.DAO.WarehouseDAO.FactTemperatureDao;
 import en.via.SEP4.Model.DBModel.TemperatureEntity;
-import en.via.SEP4.Model.DWModel.FactHumidityEntity;
 import en.via.SEP4.Model.DWModel.FactTemperatureEntity;
 import en.via.SEP4.Model.Utility.StatisticsValues;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -33,15 +31,16 @@ public class TemperatureServiceImpl implements TemperatureService {
 
     @Override
     public TemperatureEntity addTemperatureMeasurementToArchive(Long archiveId, TemperatureEntity temperatureMeasurement) {
-        return archiveDao.findById(archiveId).map(archive -> {
-            temperatureMeasurement.setArchiveEntity(archive);
-            return temperatureDao.save(temperatureMeasurement);
-        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
+            return null;
+//        return archiveDao.findById(archiveId).map(archive -> {
+//            temperatureMeasurement.setArchiveEntity(archive);
+//            return temperatureDao.save(temperatureMeasurement);
+//        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override
     public List<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId) {
-        return temperatureDao.findByArchiveEntityId(archiveId);
+        return temperatureDao.findBySensorEntityArchiveEntity_Id(archiveId);
     }
 
     @Override

@@ -31,13 +31,6 @@ public class TemperatureMeasurementsController {
         return ResponseEntity.status(HttpStatus.OK).body(temperatureService.getAllTemperatureMeasurementsFromArchiveId(archiveId));
     }
 
-    @PostMapping(value = "archive/{archiveId}/temperature")
-    public ResponseEntity<TemperatureEntity> createTemperatureForArchive(@PathVariable(value = "archiveId") Long archiveId,
-                                                                         @Valid @RequestBody TemperatureEntity temperatureEntity) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(temperatureService.addTemperatureMeasurementToArchive(archiveId, temperatureEntity));
-    }
-
-
     @GetMapping(value = "archive/{archiveId}/temperature/dateInterval")
     public ResponseEntity<List<StatisticsValues>> getTemperaturesByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                                 @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,

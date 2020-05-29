@@ -32,13 +32,6 @@ public class CarbonDioxideMeasurementsController {
         return ResponseEntity.status(HttpStatus.OK).body(carbonDioxideService.getAllCarbonDioxideMeasurementsFromArchiveId(archiveId));
     }
 
-    @PostMapping(value = "archive/{archiveId}/carbondioxide")
-    public ResponseEntity<CarbonDioxideEntity> createCarbonDioxideMeasurementForArchive(@PathVariable(name = "archiveId") Long archiveId,
-                                                                                        @Valid @RequestBody CarbonDioxideEntity carbonDioxideEntity) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(carbonDioxideService.addCarbonDioxideMeasurementToArchive(archiveId, carbonDioxideEntity));
-    }
-
-
     @GetMapping(value = "archive/{archiveId}/carbondioxide/dateInterval")
     public ResponseEntity<List<StatisticsValues>> getCarbonDioxideMeasurementsByDateInterval(@PathVariable(name = "archiveId") Long archiveId,
                                                                                              @Valid @RequestParam(name = "startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,

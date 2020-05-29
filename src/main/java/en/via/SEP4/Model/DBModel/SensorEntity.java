@@ -19,6 +19,10 @@ public class SensorEntity {
     @NotNull
     private String type;
 
+    @OneToOne
+    @JoinColumn(name = "archive_id")
+    private ArchiveEntity archiveEntity;
+
     @Transient
     public static String SENSOR_TYPE_TEMPERATURE = "Temperature";
 
