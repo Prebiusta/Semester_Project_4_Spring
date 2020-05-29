@@ -10,6 +10,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface HumidityDao extends JpaRepository<HumidityEntity,Long> {
-    HumidityEntity findFirstBySensorEntityArchiveEntity_IdOrderByIdDesc(Long archiveId);
+    HumidityEntity findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(Long archiveId);
     List<HumidityEntity> findBySensorEntityArchiveEntity_Id(Long archiveId);
 }

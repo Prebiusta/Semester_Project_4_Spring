@@ -33,9 +33,9 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     @Override
     public LatestValues getTheLatestMeasurementValues(ArchiveEntity archiveEntity) {
         // TODO: Fix error with DAO query
-        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstBySensorEntityArchiveEntity_IdOrderByIdDesc(archiveEntity.getId());
-        HumidityEntity latestHumidity = humidityDao.findFirstBySensorEntityArchiveEntity_IdOrderByIdDesc(archiveEntity.getId());
-        TemperatureEntity latestTemperature = temperatureDao.findFirstBySensorEntityArchiveEntity_IdOrderByIdDesc(archiveEntity.getId());
+        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
+        HumidityEntity latestHumidity = humidityDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
+        TemperatureEntity latestTemperature = temperatureDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
 
         return new LatestValues(archiveEntity, latestTemperature.getValue(), latestCarbonDioxide.getValue(), latestHumidity.getValue());
     }

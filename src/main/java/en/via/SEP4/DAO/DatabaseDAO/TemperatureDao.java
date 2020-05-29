@@ -10,5 +10,5 @@ import java.util.List;
 
 public interface TemperatureDao extends JpaRepository<TemperatureEntity, Long> {
     List<TemperatureEntity> findBySensorEntityArchiveEntity_Id(Long archiveId);
-    TemperatureEntity findFirstBySensorEntityArchiveEntity_IdOrderByIdDesc(Long archiveId);
+    TemperatureEntity findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(Long archiveId);
 }

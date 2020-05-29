@@ -17,12 +17,10 @@ import java.util.List;
 @RequestMapping("/api")
 public class ArchivesController {
     private final ArchiveService archiveService;
-    private final TemperatureDao temperatureDao;
 
     @Autowired
-    public ArchivesController(ArchiveService archiveService, TemperatureDao temperatureDao) {
+    public ArchivesController(ArchiveService archiveService) {
         this.archiveService = archiveService;
-        this.temperatureDao = temperatureDao;
     }
 
     @GetMapping(value = "/archive")
@@ -34,11 +32,6 @@ public class ArchivesController {
     public ResponseEntity<ArchiveEntity> getArchiveByArchiveId(@PathVariable(name = "archiveId") Long archiveId
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(archiveService.getArchiveByArchiveId(archiveId));
-    }
-
-    @GetMapping(value = "test/{archiveId}")
-    public ResponseEntity<?> test(@PathVariable(name = "archiveId") Long archiveId){
-        return ResponseEntity.status(HttpStatus.OK).body(temperatureDao.findFirstBySensorEntityArchiveEntity_IdOrderByIdDesc(archiveId));
     }
 }
 
