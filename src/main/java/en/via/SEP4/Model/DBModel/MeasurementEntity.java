@@ -17,6 +17,11 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(
+        value = {"date"},
+        allowGetters =  true
+)
 public abstract class MeasurementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +30,9 @@ public abstract class MeasurementEntity {
     @NotNull
     private float value;
 
-    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date", nullable = false, updatable = false)
+    @CreatedDate
     private Date date;
 
     @ManyToOne(optional = false)
@@ -38,8 +45,4 @@ public abstract class MeasurementEntity {
     @JoinColumn(name = "sensor_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SensorEntity sensorEntity;
-
-    public MeasurementEntity() {
-        this.date = new Date();
-    }
 }

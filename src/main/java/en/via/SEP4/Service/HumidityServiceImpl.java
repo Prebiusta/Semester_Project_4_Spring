@@ -45,6 +45,10 @@ public class HumidityServiceImpl implements HumidityService {
     public List<StatisticsValues> getHumidityMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
         List<FactHumidityEntity> facts = factHumidityDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
 
+        if (facts.size() == 0){
+            throw new ResourceNotFoundException("No values found in interval " + startDate + " and " + endDate + " for archiveId " + archiveId);
+        }
+
         List<StatisticsValues> humidityStatistics = new ArrayList<StatisticsValues>();
         Date date;
         for (int i = 0 ; i < facts.size();i++)
@@ -59,6 +63,11 @@ public class HumidityServiceImpl implements HumidityService {
     @Override
     public float getAverageHumidityMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate) {
         List<FactHumidityEntity> facts = factHumidityDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
+
+        if (facts.size() == 0){
+            throw new ResourceNotFoundException("No values found in interval " + startDate + " and " + endDate + " for archiveId " + archiveId);
+        }
+
         float sum = 0;
         for (int i = 0 ; i < facts.size();i++)
         {

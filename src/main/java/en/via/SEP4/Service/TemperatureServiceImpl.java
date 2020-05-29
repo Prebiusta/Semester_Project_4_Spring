@@ -48,6 +48,10 @@ public class TemperatureServiceImpl implements TemperatureService {
     public List<StatisticsValues> getTemperatureMeasurementsByDateInterval(Long archiveId, Date startDate, Date endDate) {
         List<FactTemperatureEntity> facts = factTemperatureDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
 
+        if (facts.size() == 0){
+            throw new ResourceNotFoundException("No values found in interval " + startDate + " and " + endDate + " for archiveId " + archiveId);
+        }
+
         List<StatisticsValues> temperatureStatistics = new ArrayList<StatisticsValues>();
         Date date;
         for (int i = 0 ; i < facts.size();i++)
@@ -61,10 +65,14 @@ public class TemperatureServiceImpl implements TemperatureService {
 
     @Override
     public float getAverageTemperatureMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate) {
-        List<FactTemperatureEntity> temperatureFacts;
+        List<FactTemperatureEntity> temperatureFacts = factTemperatureDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
+
+        if (temperatureFacts.size() == 0){
+            throw new ResourceNotFoundException("No values found in interval " + startDate + " and " + endDate + " for archiveId " + archiveId);
+        }
+
         float sum = 0;
         float average =0;
-        temperatureFacts = factTemperatureDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
         for(int i =0;i<temperatureFacts.size();i++)
         {
             sum += temperatureFacts.get(i).getTemperature();
@@ -72,7 +80,6 @@ public class TemperatureServiceImpl implements TemperatureService {
         average = sum/temperatureFacts.size();
 
         return average;
-
     }
 
 }

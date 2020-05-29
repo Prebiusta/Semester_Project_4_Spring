@@ -45,10 +45,14 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
         List<FactCarbonDioxideEntity> facts = factCarbonDioxideDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
 
         List<StatisticsValues> statistics = new ArrayList<>();
-        Date date;
+
+        if (facts.size() == 0){
+            throw new ResourceNotFoundException("No values found in interval " + startDate + " and " + endDate + " for archiveId " + archiveId);
+        }
+
         for (int i = 0 ; i < facts.size();i++)
         {
-            date = new Date(facts.get(i).getDate().getRepresentedDate().getTime() + (facts.get(i).getTime().getMinutesSinceMidnight() * 60000));
+            Date date = new Date(facts.get(i).getDate().getRepresentedDate().getTime() + (facts.get(i).getTime().getMinutesSinceMidnight() * 60000));
             statistics.add(new StatisticsValues(facts.get(i).getCarbonDioxide(),date));
         }
 
@@ -58,6 +62,11 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     @Override
     public float getAverageCarbonDioxideMeasurementForArchiveByDateInterval(Long archiveId, Date startDate, Date endDate) {
         List<FactCarbonDioxideEntity> facts = factCarbonDioxideDao.findAllByArchiveArchiveIdAndDate_RepresentedDateBetween(archiveId,startDate,endDate);
+
+        if (facts.size() == 0){
+            throw new ResourceNotFoundException("No values found in interval " + startDate + " and " + endDate + " for archiveId " + archiveId);
+        }
+
         float sum = 0;
         for (int i = 0 ; i < facts.size();i++)
         {
