@@ -1,9 +1,9 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.ArchiveDao;
-import en.via.SEP4.DAO.CarbonDioxideDao;
-import en.via.SEP4.DAO.HumidityDao;
-import en.via.SEP4.DAO.TemperatureDao;
+import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
+import en.via.SEP4.DAO.DatabaseDAO.CarbonDioxideDao;
+import en.via.SEP4.DAO.DatabaseDAO.HumidityDao;
+import en.via.SEP4.DAO.DatabaseDAO.TemperatureDao;
 import en.via.SEP4.Model.DBModel.ArchiveEntity;
 import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Model.DBModel.HumidityEntity;
@@ -20,24 +20,36 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     private final CarbonDioxideDao carbonDioxideDao;
     private final HumidityDao humidityDao;
     private final TemperatureDao temperatureDao;
-
+    private final ArchiveDao archiveDao;
 
     @Autowired
-    public LatestValuesServiceImpl(CarbonDioxideDao carbonDioxideDao, HumidityDao humidityDao, TemperatureDao temperatureDao) {
+    public LatestValuesServiceImpl(CarbonDioxideDao carbonDioxideDao, HumidityDao humidityDao, TemperatureDao temperatureDao, ArchiveDao archiveDao) {
         this.carbonDioxideDao = carbonDioxideDao;
         this.humidityDao = humidityDao;
         this.temperatureDao = temperatureDao;
-
+        this.archiveDao = archiveDao;
     }
 
     @Override
-    public LatestValues getTheLatestMeasurementValues(ArchiveEntity archiveId) {
-        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId.getId());
-        HumidityEntity latestHumidity = humidityDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId.getId());
-        TemperatureEntity latestTemperature = temperatureDao.findFirstByArchiveEntityIdOrderByIdDesc(archiveId.getId());
+    public LatestValues getTheLatestMeasurementValues(ArchiveEntity archiveEntity) {
+        // TODO: Fix error with DAO query
+        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
+        HumidityEntity latestHumidity = humidityDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
+        TemperatureEntity latestTemperature = temperatureDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
 
-        return new LatestValues(archiveId, latestTemperature.getValue(), latestCarbonDioxide.getValue(), latestHumidity.getValue());
+        return new LatestValues(archiveEntity, latestTemperature.getValue(), latestCarbonDioxide.getValue(), latestHumidity.getValue());
     }
 
+    @Override
+    public List<LatestValues> getTheLatestMeasurementsForAllArchives() {
+        List<LatestValues> latestValuesForAllArchives = new ArrayList<>();
+        List<ArchiveEntity> allArchives;
+        allArchives = archiveDao.findAll();
 
+        for (ArchiveEntity archiveEntity : allArchives) {
+            latestValuesForAllArchives.add(getTheLatestMeasurementValues(archiveEntity));
+        }
+
+        return latestValuesForAllArchives;
+    }
 }

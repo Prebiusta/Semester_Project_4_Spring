@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,6 +18,12 @@ import java.util.Date;
 @Getter
 @Setter
 @MappedSuperclass
+@ToString
+@EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(
+        value = {"date", "sensor_id"},
+        allowGetters =  true
+)
 public abstract class MeasurementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,21 +32,13 @@ public abstract class MeasurementEntity {
     @NotNull
     private float value;
 
-    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "date", nullable = false, updatable = false)
+    @CreatedDate
     private Date date;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "archive_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private ArchiveEntity archiveEntity;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "sensor_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private SensorEntity sensorEntity;
-
-    public MeasurementEntity() {
-        this.date = new Date();
-    }
 }

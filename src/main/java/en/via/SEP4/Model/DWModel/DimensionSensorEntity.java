@@ -28,10 +28,8 @@ public class DimensionSensorEntity {
     @NotNull
     private String type;
 
-    @NotNull
     private Date validFrom;
 
-    @NotNull
     private Date validTo;
 
 }

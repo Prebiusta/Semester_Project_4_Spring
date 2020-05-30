@@ -64,6 +64,18 @@
             <artifactId>velocity</artifactId>
             <version>1.7</version>
         </dependency>
+
+        <!-- Web Socket-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+        </dependency>
+
     </dependencies>
 
 

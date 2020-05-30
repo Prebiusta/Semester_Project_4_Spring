@@ -21,6 +21,7 @@ public class DimensionDateEntity {
     @Column(name = "dim_date_id")
     private Long dimDateId;
 
+    @Column(name = "represented_date")
     @NotNull
     private Date representedDate;
 
