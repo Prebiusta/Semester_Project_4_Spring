@@ -17,25 +17,14 @@ import java.util.List;
 @Service
 public class TemperatureServiceImpl implements TemperatureService {
     private final TemperatureDao temperatureDao;
-    private final ArchiveDao archiveDao;
     private final FactTemperatureDao factTemperatureDao;
 
 
 
     @Autowired
-    public TemperatureServiceImpl(TemperatureDao temperatureDao, ArchiveDao archiveDao,FactTemperatureDao factTemperatureDao) {
+    public TemperatureServiceImpl(TemperatureDao temperatureDao, FactTemperatureDao factTemperatureDao) {
         this.temperatureDao = temperatureDao;
-        this.archiveDao = archiveDao;
         this.factTemperatureDao = factTemperatureDao;
-    }
-
-    @Override
-    public TemperatureEntity addTemperatureMeasurementToArchive(Long archiveId, TemperatureEntity temperatureMeasurement) {
-            return null;
-//        return archiveDao.findById(archiveId).map(archive -> {
-//            temperatureMeasurement.setArchiveEntity(archive);
-//            return temperatureDao.save(temperatureMeasurement);
-//        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override

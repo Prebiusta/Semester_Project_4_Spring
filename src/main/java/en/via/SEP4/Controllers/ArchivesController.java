@@ -1,6 +1,5 @@
 package en.via.SEP4.Controllers;
 
-import en.via.SEP4.DAO.DatabaseDAO.TemperatureDao;
 import en.via.SEP4.Model.DBModel.ArchiveEntity;
 import en.via.SEP4.Service.ArchiveService;
 import org.springframework.beans.factory.annotation.Autowired;

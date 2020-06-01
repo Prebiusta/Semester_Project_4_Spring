@@ -18,25 +18,13 @@ import java.util.List;
 @Service
 public class CarbonDioxideServiceImpl implements CarbonDioxideService {
     private final CarbonDioxideDao carbonDioxideDao;
-    private final ArchiveDao archiveDao;
     private final FactCarbonDioxideDao factCarbonDioxideDao;
-    private final SensorDao sensorDao;
 
 
     @Autowired
-    public CarbonDioxideServiceImpl(CarbonDioxideDao carbonDioxideDao, ArchiveDao archiveDao, FactCarbonDioxideDao factCarbonDioxideDao, SensorDao sensorDao) {
+    public CarbonDioxideServiceImpl(CarbonDioxideDao carbonDioxideDao, FactCarbonDioxideDao factCarbonDioxideDao) {
         this.carbonDioxideDao = carbonDioxideDao;
-        this.archiveDao = archiveDao;
         this.factCarbonDioxideDao = factCarbonDioxideDao;
-        this.sensorDao = sensorDao;
-    }
-
-    @Override
-    public CarbonDioxideEntity addCarbonDioxideMeasurementToArchive(Long archiveId, CarbonDioxideEntity carbonDioxideMeasurement) {
-        return sensorDao.findByArchiveEntity_Id(archiveId).map(sensor -> {
-            carbonDioxideMeasurement.setSensorEntity(sensor);
-            return carbonDioxideDao.save(carbonDioxideMeasurement);
-        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override

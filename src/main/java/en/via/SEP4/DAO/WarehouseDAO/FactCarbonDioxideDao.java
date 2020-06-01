@@ -1,6 +1,5 @@
 package en.via.SEP4.DAO.WarehouseDAO;
 
-import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Model.DWModel.FactCarbonDioxideEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

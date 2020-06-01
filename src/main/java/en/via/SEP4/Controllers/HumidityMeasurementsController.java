@@ -4,8 +4,6 @@ import en.via.SEP4.Model.DBModel.HumidityEntity;
 import en.via.SEP4.Model.Utility.StatisticsValues;
 import en.via.SEP4.Service.HumidityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

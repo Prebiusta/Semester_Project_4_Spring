@@ -1,6 +1,5 @@
 package en.via.SEP4.Model.DWModel;
 
-import jdk.jfr.Name;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

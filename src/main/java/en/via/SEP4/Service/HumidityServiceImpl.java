@@ -18,23 +18,12 @@ import java.util.List;
 @Service
 public class HumidityServiceImpl implements HumidityService {
     private final HumidityDao humidityDao;
-    private final ArchiveDao archiveDao;
     private final FactHumidityDao factHumidityDao;
 
     @Autowired
-    public HumidityServiceImpl(HumidityDao humidityDao, ArchiveDao archiveDao, FactHumidityDao factHumidityDao) {
+    public HumidityServiceImpl(HumidityDao humidityDao, FactHumidityDao factHumidityDao) {
         this.humidityDao = humidityDao;
-        this.archiveDao = archiveDao;
         this.factHumidityDao = factHumidityDao;
-    }
-
-    @Override
-    public HumidityEntity addHumidityMeasurementToArchive(Long archiveId, HumidityEntity humidityMeasurement) {
-        return null;
-//        return archiveDao.findById(archiveId).map(archive -> {
-//            humidityMeasurement.setArchiveEntity(archive);
-//            return humidityDao.save(humidityMeasurement);
-//        }).orElseThrow(() -> new ResourceNotFoundException("ArchiveId " + archiveId + " not found"));
     }
 
     @Override

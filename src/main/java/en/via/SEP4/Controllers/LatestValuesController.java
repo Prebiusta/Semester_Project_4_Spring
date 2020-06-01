@@ -1,6 +1,5 @@
 package en.via.SEP4.Controllers;
 
-import en.via.SEP4.Model.DBModel.ArchiveEntity;
 import en.via.SEP4.Model.Utility.LatestValues;
 import en.via.SEP4.Service.ArchiveService;
 import en.via.SEP4.Service.LatestValuesService;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
