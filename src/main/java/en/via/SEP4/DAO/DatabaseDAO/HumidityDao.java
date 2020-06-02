@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface HumidityDao extends JpaRepository<HumidityEntity,Long> {
     HumidityEntity findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(Long archiveId);
-    List<HumidityEntity> findBySensorEntityArchiveEntity_Id(Long archiveId);
+    List<HumidityEntity> findBySensorEntityArchiveEntityId(Long archiveId);
 }

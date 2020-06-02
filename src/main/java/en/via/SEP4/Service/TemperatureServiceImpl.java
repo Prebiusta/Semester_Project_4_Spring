@@ -1,6 +1,5 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
 import en.via.SEP4.DAO.DatabaseDAO.TemperatureDao;
 import en.via.SEP4.DAO.WarehouseDAO.FactTemperatureDao;
 import en.via.SEP4.Model.DBModel.TemperatureEntity;
@@ -29,7 +28,7 @@ public class TemperatureServiceImpl implements TemperatureService {
 
     @Override
     public List<TemperatureEntity> getAllTemperatureMeasurementsFromArchiveId(Long archiveId) {
-        return temperatureDao.findBySensorEntityArchiveEntity_Id(archiveId);
+        return temperatureDao.findBySensorEntityArchiveEntityId(archiveId);
     }
 
     @Override

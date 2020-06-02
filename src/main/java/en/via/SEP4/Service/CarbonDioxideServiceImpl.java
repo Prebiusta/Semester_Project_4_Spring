@@ -1,8 +1,6 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
 import en.via.SEP4.DAO.DatabaseDAO.CarbonDioxideDao;
-import en.via.SEP4.DAO.DatabaseDAO.SensorDao;
 import en.via.SEP4.DAO.WarehouseDAO.FactCarbonDioxideDao;
 import en.via.SEP4.Model.DBModel.CarbonDioxideEntity;
 import en.via.SEP4.Model.DWModel.FactCarbonDioxideEntity;
@@ -29,7 +27,7 @@ public class CarbonDioxideServiceImpl implements CarbonDioxideService {
 
     @Override
     public List<CarbonDioxideEntity> getAllCarbonDioxideMeasurementsFromArchiveId(Long archiveId) {
-        return carbonDioxideDao.findBySensorEntityArchiveEntity_Id(archiveId);
+        return carbonDioxideDao.findBySensorEntityArchiveEntityId(archiveId);
     }
 
     @Override

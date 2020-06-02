@@ -1,6 +1,5 @@
 package en.via.SEP4.Service;
 
-import en.via.SEP4.DAO.DatabaseDAO.ArchiveDao;
 import en.via.SEP4.DAO.DatabaseDAO.HumidityDao;
 import en.via.SEP4.DAO.WarehouseDAO.FactHumidityDao;
 import en.via.SEP4.Model.DBModel.HumidityEntity;
@@ -28,7 +27,7 @@ public class HumidityServiceImpl implements HumidityService {
 
     @Override
     public List<HumidityEntity> getAllHumidityMeasurementsFromArchiveId(Long archiveId) {
-        return humidityDao.findBySensorEntityArchiveEntity_Id(archiveId);
+        return humidityDao.findBySensorEntityArchiveEntityId(archiveId);
     }
 
     @Override
