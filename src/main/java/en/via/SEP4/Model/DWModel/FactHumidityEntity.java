@@ -36,5 +36,7 @@ public class FactHumidityEntity {
 
     @NotNull
     private float humidity;
+    @NotNull
+    private float optimalValueHumidity;
 
 }

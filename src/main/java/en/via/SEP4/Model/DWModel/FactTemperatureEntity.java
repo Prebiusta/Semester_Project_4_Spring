@@ -32,4 +32,6 @@ public class FactTemperatureEntity {
 
     @NotNull
     private float temperature;
+    @NotNull
+    private float optimalValueTemperature;
 }

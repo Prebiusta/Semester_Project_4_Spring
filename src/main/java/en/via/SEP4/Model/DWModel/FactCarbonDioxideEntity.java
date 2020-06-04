@@ -33,5 +33,7 @@ public class FactCarbonDioxideEntity {
 
     @NotNull
     private float carbonDioxide;
+    @NotNull
+    private float optimalValueCarbondioxide;
 
 }
