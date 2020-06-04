@@ -9,5 +9,4 @@ import java.util.List;
 public interface CarbonDioxideDao extends JpaRepository<CarbonDioxideEntity, Long> {
     CarbonDioxideEntity findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(Long archiveId);
     List<CarbonDioxideEntity> findBySensorEntityArchiveEntityId(Long archiveId);
-    List<CarbonDioxideEntity> findBySensorEntityId(Long archiveId);
 }
