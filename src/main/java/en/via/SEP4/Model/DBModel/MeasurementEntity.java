@@ -1,5 +1,6 @@
 package en.via.SEP4.Model.DBModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,10 +16,6 @@ import java.util.Date;
 @Setter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(
-        value = {"date", "sensor_id"},
-        allowGetters =  true
-)
 public abstract class MeasurementEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +27,12 @@ public abstract class MeasurementEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date", nullable = false, updatable = false)
     @CreatedDate
+    @JsonIgnore
     private Date date;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "sensor_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private SensorEntity sensorEntity;
 }
