@@ -17,19 +17,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class LatestValuesController {
     LatestValuesService latestValuesService;
-    ArchiveService archiveService;
 
     @Autowired
-    public LatestValuesController(LatestValuesService service, ArchiveService archiveService)
+    public LatestValuesController(LatestValuesService service)
     {
         this. latestValuesService = service;
-        this.archiveService = archiveService;
     }
 
     @GetMapping(value = "archive/{archiveId}/latestValuesByArchiveId")
     ResponseEntity<LatestValues> getTheLatestMeasurementValuesByArchiveId(@PathVariable(value = "archiveId") Long archiveId)
     {
-        return ResponseEntity.status(HttpStatus.OK).body(latestValuesService.getTheLatestMeasurementValues(archiveService.getArchiveByArchiveId(archiveId)));
+        return ResponseEntity.status(HttpStatus.OK).body(latestValuesService.getTheLatestMeasurementValues(archiveId));
     }
 
     @GetMapping(value = "archive/latestValues")

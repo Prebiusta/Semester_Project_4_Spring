@@ -31,13 +31,12 @@ public class LatestValuesServiceImpl implements LatestValuesService {
     }
 
     @Override
-    public LatestValues getTheLatestMeasurementValues(ArchiveEntity archiveEntity) {
-        // TODO: Fix error with DAO query
-        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
-        HumidityEntity latestHumidity = humidityDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
-        TemperatureEntity latestTemperature = temperatureDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveEntity.getId());
+    public LatestValues getTheLatestMeasurementValues(long archiveId) {
+        CarbonDioxideEntity latestCarbonDioxide = carbonDioxideDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveId);
+        HumidityEntity latestHumidity = humidityDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveId);
+        TemperatureEntity latestTemperature = temperatureDao.findFirstBySensorEntityArchiveEntityIdOrderByIdDesc(archiveId);
 
-        return new LatestValues(archiveEntity, latestTemperature.getValue(), latestCarbonDioxide.getValue(), latestHumidity.getValue());
+        return new LatestValues(archiveDao.findById(archiveId).get(), latestTemperature.getValue(), latestCarbonDioxide.getValue(), latestHumidity.getValue());
     }
 
     @Override
@@ -47,7 +46,7 @@ public class LatestValuesServiceImpl implements LatestValuesService {
         allArchives = archiveDao.findAll();
 
         for (ArchiveEntity archiveEntity : allArchives) {
-            latestValuesForAllArchives.add(getTheLatestMeasurementValues(archiveEntity));
+            latestValuesForAllArchives.add(getTheLatestMeasurementValues(archiveEntity.getId()));
         }
 
         return latestValuesForAllArchives;
